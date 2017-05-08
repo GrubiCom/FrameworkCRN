@@ -1,0 +1,10 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/swig/_pmt_cpp_swig_swig_tag.cpp
+

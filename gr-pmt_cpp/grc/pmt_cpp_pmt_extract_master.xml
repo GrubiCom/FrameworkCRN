@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<block>
+  <name>Message Parser Master</name>
+  <key>pmt_cpp_pmt_extract_master</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.pmt_extract_master()</make>
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in_pdu</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>data</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>share</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>Ack</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>freq</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>freqTeste</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  
+</block>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<block>
+  <name>File Connect</name>
+  <key>pmt_cpp_file_connect</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.file_connect()</make>
+  
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+
+  <sink>
+    <name>in_pdu</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  
+  <source>
+    <name>out1</name>
+    <type>complex</type>
+  </source>
+  <source>
+    <name>out2</name>
+    <type>complex</type>
+  </source>
+  <source>
+    <name>bool</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classgr_1_1pmt__cpp_1_1start__sense__impl" kind="class" prot="public">
+    <compoundname>gr::pmt_cpp::start_sense_impl</compoundname>
+    <basecompoundref refid="classgr_1_1pmt__cpp_1_1start__sense" prot="public" virt="non-virtual">gr::pmt_cpp::start_sense</basecompoundref>
+    <includes refid="start__sense__impl_8h" local="no">start_sense_impl.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classgr_1_1pmt__cpp_1_1start__sense__impl_1adaa1416eded492cbb24d253a80667731" prot="private" static="no" mutable="no">
+        <type>boost::thread *</type>
+        <definition>boost::thread* gr::pmt_cpp::start_sense_impl::d_thread</definition>
+        <argsstring></argsstring>
+        <name>d_thread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" line="33" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1pmt__cpp_1_1start__sense__impl_1a14a3f0e093d27e6f1361752ba1a772d1" prot="private" static="no" mutable="no">
+        <type>gr::thread::mutex</type>
+        <definition>gr::thread::mutex gr::pmt_cpp::start_sense_impl::d_mutex</definition>
+        <argsstring></argsstring>
+        <name>d_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" line="34" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classgr_1_1pmt__cpp_1_1start__sense__impl_1a1197d0ce7ea688144a3485d7356c3f2e" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool gr::pmt_cpp::start_sense_impl::sense</definition>
+        <argsstring></argsstring>
+        <name>sense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" line="40" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1start__sense__impl_1aa220ff28d1340738bd57158abea7a003" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::pmt_cpp::start_sense_impl::start_sense_impl</definition>
+        <argsstring>()</argsstring>
+        <name>start_sense_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" line="37" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1start__sense__impl_1aa745ccce86d0e56d6e71e0e00057acb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::pmt_cpp::start_sense_impl::handle_msg</definition>
+        <argsstring>(pmt::pmt_t msg)</argsstring>
+        <name>handle_msg</name>
+        <param>
+          <type>pmt::pmt_t</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" line="38" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1start__sense__impl_1a5c0f98d93985cf3a9aed8b077cd0cca3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool gr::pmt_cpp::start_sense_impl::is_sense</definition>
+        <argsstring>()</argsstring>
+        <name>is_sense</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" line="39" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="284">
+        <label>gr::pmt_cpp::start_sense_impl</label>
+        <link refid="classgr_1_1pmt__cpp_1_1start__sense__impl"/>
+        <childnode refid="285" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="285">
+        <label>gr::pmt_cpp::start_sense</label>
+        <link refid="classgr_1_1pmt__cpp_1_1start__sense"/>
+        <childnode refid="286" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="286">
+        <label>block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="287">
+        <label>gr::pmt_cpp::start_sense_impl</label>
+        <link refid="classgr_1_1pmt__cpp_1_1start__sense__impl"/>
+        <childnode refid="288" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="288">
+        <label>gr::pmt_cpp::start_sense</label>
+        <link refid="classgr_1_1pmt__cpp_1_1start__sense"/>
+        <childnode refid="289" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="289">
+        <label>block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" line="30" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h" bodystart="29" bodyend="42"/>
+    <listofallmembers>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense__impl_1a14a3f0e093d27e6f1361752ba1a772d1" prot="private" virt="non-virtual"><scope>gr::pmt_cpp::start_sense_impl</scope><name>d_mutex</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense__impl_1adaa1416eded492cbb24d253a80667731" prot="private" virt="non-virtual"><scope>gr::pmt_cpp::start_sense_impl</scope><name>d_thread</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense__impl_1aa745ccce86d0e56d6e71e0e00057acb8" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::start_sense_impl</scope><name>handle_msg</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense__impl_1a5c0f98d93985cf3a9aed8b077cd0cca3" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::start_sense_impl</scope><name>is_sense</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense_1af6669d1c7e4288a5e6baaebbb85ea40e" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::start_sense_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense__impl_1a1197d0ce7ea688144a3485d7356c3f2e" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::start_sense_impl</scope><name>sense</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense_1a8d8d8df7bc8a1656ae98056365eef784" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::start_sense_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense__impl_1aa220ff28d1340738bd57158abea7a003" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::start_sense_impl</scope><name>start_sense_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<block>
+  <name>File Recorder Master</name>
+  <key>pmt_cpp_data_extract_master</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.data_extract_master($filename)</make>
+  <param>
+    <name>Filename</name>
+    <key>filename</key>
+    <value>/home/ariel/Documentos/gr-pmt_cpp/json/res_sense.txt</value>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  
+</block>

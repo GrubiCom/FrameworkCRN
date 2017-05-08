@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classgr_1_1pmt__cpp_1_1message__type__impl" kind="class" prot="public">
+    <compoundname>gr::pmt_cpp::message_type_impl</compoundname>
+    <basecompoundref refid="classgr_1_1pmt__cpp_1_1message__type" prot="public" virt="non-virtual">gr::pmt_cpp::message_type</basecompoundref>
+    <includes refid="message__type__impl_8h" local="no">message_type_impl.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classgr_1_1pmt__cpp_1_1message__type__impl_1a121aa09b13a3ff1fd4f1b210e7e98515" prot="private" static="no" mutable="no">
+        <type>boost::thread *</type>
+        <definition>boost::thread* gr::pmt_cpp::message_type_impl::d_thread</definition>
+        <argsstring></argsstring>
+        <name>d_thread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="36" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classgr_1_1pmt__cpp_1_1message__type__impl_1aabfbb19d4ad230bcfd39c50a55f9fcb8" prot="private" static="no" mutable="no">
+        <type>gr::thread::mutex</type>
+        <definition>gr::thread::mutex gr::pmt_cpp::message_type_impl::d_mutex</definition>
+        <argsstring></argsstring>
+        <name>d_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="37" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1ace9e49773c7883b2ff3be33d9c4d078d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::pmt_cpp::message_type_impl::run</definition>
+        <argsstring>(message_type_impl *instance)</argsstring>
+        <name>run</name>
+        <param>
+          <type><ref refid="classgr_1_1pmt__cpp_1_1message__type__impl" kindref="compound">message_type_impl</ref> *</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="35" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1a9c0bb0a326f2e66d66e3e51b85933f6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::pmt_cpp::message_type_impl::message_type_impl</definition>
+        <argsstring>()</argsstring>
+        <name>message_type_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="40" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1a983853bd304bc6da47bb67fce47085b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>gr::pmt_cpp::message_type_impl::~message_type_impl</definition>
+        <argsstring>()</argsstring>
+        <name>~message_type_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="41" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1aed53b627b9ac587848fbaa19ead6f29a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::pmt_cpp::message_type_impl::set_nmsg</definition>
+        <argsstring>(int nmsg)</argsstring>
+        <name>set_nmsg</name>
+        <param>
+          <type>int</type>
+          <declname>nmsg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="42" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1af563a2096579abf6b76fd53f7b798a18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int gr::pmt_cpp::message_type_impl::get_nmsg</definition>
+        <argsstring>()</argsstring>
+        <name>get_nmsg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="43" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1af49184b0e0f89077900c8fb19bc63fd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::pmt_cpp::message_type_impl::set_delay</definition>
+        <argsstring>(float delay)</argsstring>
+        <name>set_delay</name>
+        <param>
+          <type>float</type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="45" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1a9185f5635d98cad4f6dbba0c9610d044" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float gr::pmt_cpp::message_type_impl::get_delay</definition>
+        <argsstring>()</argsstring>
+        <name>get_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="46" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1ac4c470146cb9de63f9430234fdb3b9ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::pmt_cpp::message_type_impl::start_tx</definition>
+        <argsstring>()</argsstring>
+        <name>start_tx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="48" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1a58edc9a8d0eb865ce115eb516caef4cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void gr::pmt_cpp::message_type_impl::stop_tx</definition>
+        <argsstring>()</argsstring>
+        <name>stop_tx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="49" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1message__type__impl_1a98ea81362ef2a09fda798d68e85e3402" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool gr::pmt_cpp::message_type_impl::is_running</definition>
+        <argsstring>()</argsstring>
+        <name>is_running</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="50" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="164">
+        <label>gr::pmt_cpp::message_type</label>
+        <link refid="classgr_1_1pmt__cpp_1_1message__type"/>
+        <childnode refid="165" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="165">
+        <label>block</label>
+      </node>
+      <node id="163">
+        <label>gr::pmt_cpp::message_type_impl</label>
+        <link refid="classgr_1_1pmt__cpp_1_1message__type__impl"/>
+        <childnode refid="164" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="167">
+        <label>gr::pmt_cpp::message_type</label>
+        <link refid="classgr_1_1pmt__cpp_1_1message__type"/>
+        <childnode refid="168" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="168">
+        <label>block</label>
+      </node>
+      <node id="166">
+        <label>gr::pmt_cpp::message_type_impl</label>
+        <link refid="classgr_1_1pmt__cpp_1_1message__type__impl"/>
+        <childnode refid="167" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" line="32" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/message_type_impl.h" bodystart="31" bodyend="53"/>
+    <listofallmembers>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1aabfbb19d4ad230bcfd39c50a55f9fcb8" prot="private" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>d_mutex</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1a121aa09b13a3ff1fd4f1b210e7e98515" prot="private" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>d_thread</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1a9185f5635d98cad4f6dbba0c9610d044" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>get_delay</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1af563a2096579abf6b76fd53f7b798a18" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>get_nmsg</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1a98ea81362ef2a09fda798d68e85e3402" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>is_running</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type_1a1fd9e56fdfc9942ab30da829eafa117f" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>make</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1a9c0bb0a326f2e66d66e3e51b85933f6d" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>message_type_impl</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1ace9e49773c7883b2ff3be33d9c4d078d" prot="private" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>run</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1af49184b0e0f89077900c8fb19bc63fd0" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>set_delay</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1aed53b627b9ac587848fbaa19ead6f29a" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>set_nmsg</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type_1abb94b528ac974b21280018a5ae627acb" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>sptr</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1ac4c470146cb9de63f9430234fdb3b9ad" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>start_tx</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1a58edc9a8d0eb865ce115eb516caef4cf" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>stop_tx</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1message__type__impl_1a983853bd304bc6da47bb67fce47085b2" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::message_type_impl</scope><name>~message_type_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

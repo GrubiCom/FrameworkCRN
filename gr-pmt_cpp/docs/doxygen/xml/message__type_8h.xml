@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="message__type_8h" kind="file">
+    <compoundname>message_type.h</compoundname>
+    <includes refid="api_8h" local="no">pmt_cpp/api.h</includes>
+    <includes local="no">gnuradio/block.h</includes>
+    <includedby refid="message__type__impl_8h" local="no">message_type_impl.h</includedby>
+    <incdepgraph>
+      <node id="376">
+        <label>pmt_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="377" relation="include">
+        </childnode>
+      </node>
+      <node id="377">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="378">
+        <label>gnuradio/block.h</label>
+      </node>
+      <node id="375">
+        <label>message_type.h</label>
+        <link refid="message_type.h"/>
+        <childnode refid="376" relation="include">
+        </childnode>
+        <childnode refid="378" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="380">
+        <label>message_type_impl.h</label>
+        <link refid="message__type__impl_8h"/>
+      </node>
+      <node id="379">
+        <label>message_type.h</label>
+        <link refid="message_type.h"/>
+        <childnode refid="380" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classgr_1_1pmt__cpp_1_1message__type" prot="public">gr::pmt_cpp::message_type</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1pmt__cpp">gr::pmt_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/message_type.h"/>
+  </compounddef>
+</doxygen>

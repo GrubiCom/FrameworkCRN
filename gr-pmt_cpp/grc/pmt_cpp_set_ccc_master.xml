@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<block>
+  <name>set_ccc_master</name>
+  <key>pmt_cpp_set_ccc_master</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.set_ccc_master()</make>
+  
+  <sink>
+    <name>flag</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>ccc</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source> 
+  <source>
+    <name>signal</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source> 
+  
+</block>
+

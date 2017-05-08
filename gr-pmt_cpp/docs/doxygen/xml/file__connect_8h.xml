@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="file__connect_8h" kind="file">
+    <compoundname>file_connect.h</compoundname>
+    <includes refid="api_8h" local="no">pmt_cpp/api.h</includes>
+    <includes local="no">gnuradio/block.h</includes>
+    <includedby refid="file__connect__impl_8h" local="no">file_connect_impl.h</includedby>
+    <incdepgraph>
+      <node id="348">
+        <label>pmt_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="349" relation="include">
+        </childnode>
+      </node>
+      <node id="349">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="347">
+        <label>file_connect.h</label>
+        <link refid="file_connect.h"/>
+        <childnode refid="348" relation="include">
+        </childnode>
+        <childnode refid="350" relation="include">
+        </childnode>
+      </node>
+      <node id="350">
+        <label>gnuradio/block.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="351">
+        <label>file_connect.h</label>
+        <link refid="file_connect.h"/>
+        <childnode refid="352" relation="include">
+        </childnode>
+      </node>
+      <node id="352">
+        <label>file_connect_impl.h</label>
+        <link refid="file__connect__impl_8h"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classgr_1_1pmt__cpp_1_1file__connect" prot="public">gr::pmt_cpp::file_connect</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1pmt__cpp">gr::pmt_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/file_connect.h"/>
+  </compounddef>
+</doxygen>

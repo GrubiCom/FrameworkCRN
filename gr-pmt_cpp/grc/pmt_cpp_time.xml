@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<block>
+  <name>Temporize ACK</name>
+  <key>pmt_cpp_time</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.time()</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <sink>
+    <name>Ack</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  
+  <source>
+    <name>Ack_repeat</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>id_neighbor</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  
+  <source>
+    <name>Feed_back</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

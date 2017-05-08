@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<block>
+  <name>time_transmission_cycle</name>
+  <key>pmt_cpp_time_transmission_cycle</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.time_transmission_cycle()</make>
+  
+  <sink>
+    <name>in_signal</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>out_signal</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

@@ -1,0 +1,35 @@
+[  5%] Building CXX object lib/CMakeFiles/gnuradio-pmt_cpp.dir/pmt_extract_impl.cc.o
+Linking CXX shared library libgnuradio-pmt_cpp.so
+[  5%] Built target gnuradio-pmt_cpp
+[ 11%] Building CXX object lib/CMakeFiles/test-pmt_cpp.dir/test_pmt_cpp.cc.o
+[ 17%] Building CXX object lib/CMakeFiles/test-pmt_cpp.dir/qa_pmt_cpp.cc.o
+Linking CXX executable test-pmt_cpp
+[ 17%] Built target test-pmt_cpp
+[ 23%] Building CXX object swig/CMakeFiles/_pmt_cpp_swig_doc_tag.dir/_pmt_cpp_swig_doc_tag.cpp.o
+Linking CXX executable _pmt_cpp_swig_doc_tag
+[ 23%] Built target _pmt_cpp_swig_doc_tag
+[ 29%] Generating doxygen xml for pmt_cpp_swig_doc docs
+[ 35%] Generating python docstrings for pmt_cpp_swig_doc
+[ 35%] Built target pmt_cpp_swig_swig_doc
+[ 41%] Building CXX object swig/CMakeFiles/_pmt_cpp_swig_swig_tag.dir/_pmt_cpp_swig_swig_tag.cpp.o
+Linking CXX executable _pmt_cpp_swig_swig_tag
+[ 41%] Built target _pmt_cpp_swig_swig_tag
+[ 47%] Generating pmt_cpp_swig.tag
+Scanning dependencies of target pmt_cpp_swig_swig_2d0df
+[ 52%] Building CXX object swig/CMakeFiles/pmt_cpp_swig_swig_2d0df.dir/pmt_cpp_swig_swig_2d0df.cpp.o
+Linking CXX executable pmt_cpp_swig_swig_2d0df
+Swig source
+[ 64%] Built target pmt_cpp_swig_swig_2d0df
+Scanning dependencies of target _pmt_cpp_swig
+[ 70%] Building CXX object swig/CMakeFiles/_pmt_cpp_swig.dir/pmt_cpp_swigPYTHON_wrap.cxx.o
+Linking CXX shared module _pmt_cpp_swig.so
+[ 70%] Built target _pmt_cpp_swig
+[ 76%] Generating pmt_cpp_swig.pyc
+[ 82%] Generating pmt_cpp_swig.pyo
+[ 82%] Built target pygen_swig_9ef82
+[ 88%] Generating __init__.pyc
+[ 94%] Generating __init__.pyo
+[ 94%] Built target pygen_python_c4b78
+[ 94%] Built target pygen_apps_9a6dd
+[100%] Generating documentation with doxygen
+[100%] Built target doxygen_target

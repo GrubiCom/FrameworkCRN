@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="start__share_8h" kind="file">
+    <compoundname>start_share.h</compoundname>
+    <includes refid="api_8h" local="no">pmt_cpp/api.h</includes>
+    <includes local="no">gnuradio/block.h</includes>
+    <includedby refid="start__share__impl_8h" local="no">start_share_impl.h</includedby>
+    <incdepgraph>
+      <node id="529">
+        <label>pmt_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="530" relation="include">
+        </childnode>
+      </node>
+      <node id="528">
+        <label>start_share.h</label>
+        <link refid="start_share.h"/>
+        <childnode refid="529" relation="include">
+        </childnode>
+        <childnode refid="531" relation="include">
+        </childnode>
+      </node>
+      <node id="530">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="531">
+        <label>gnuradio/block.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="532">
+        <label>start_share.h</label>
+        <link refid="start_share.h"/>
+        <childnode refid="533" relation="include">
+        </childnode>
+      </node>
+      <node id="533">
+        <label>start_share_impl.h</label>
+        <link refid="start__share__impl_8h"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classgr_1_1pmt__cpp_1_1start__share" prot="public">gr::pmt_cpp::start_share</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1pmt__cpp">gr::pmt_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/start_share.h"/>
+  </compounddef>
+</doxygen>

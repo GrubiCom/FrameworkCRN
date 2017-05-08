@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<block>
+  <name>message_generation</name>
+  <key>pmt_cpp_message_generation</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.message_generation()</make>
+  <sink>
+    <name>signal</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <source>
+    <name>msg</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>mp</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  
+  
+</block>

@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classgr_1_1pmt__cpp_1_1send__file" kind="class" prot="public">
+    <compoundname>gr::pmt_cpp::send_file</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <includes refid="send__file_8h" local="no">send_file.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1pmt__cpp_1_1send__file_1a8707e7e213301e6cb94475603df621d6" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1pmt__cpp_1_1send__file" kindref="compound">send_file</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;send_file&gt; gr::pmt_cpp::send_file::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/send_file.h" line="39" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/send_file.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1send__file_1a981641bb0c05ea8f6f393447022f9689" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1pmt__cpp_1_1send__file_1a8707e7e213301e6cb94475603df621d6" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::pmt_cpp::send_file::make</definition>
+        <argsstring>()</argsstring>
+        <name>make</name>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1pmt__cpp_1_1send__file" kindref="compound">pmt_cpp::send_file</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1pmt__cpp_1_1send__file" kindref="compound">pmt_cpp::send_file</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1pmt__cpp_1_1send__file_1a981641bb0c05ea8f6f393447022f9689" kindref="member">pmt_cpp::send_file::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/send_file.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="49">
+        <label>block</label>
+      </node>
+      <node id="48">
+        <label>gr::pmt_cpp::send_file</label>
+        <link refid="classgr_1_1pmt__cpp_1_1send__file"/>
+        <childnode refid="49" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="51">
+        <label>block</label>
+      </node>
+      <node id="50">
+        <label>gr::pmt_cpp::send_file</label>
+        <link refid="classgr_1_1pmt__cpp_1_1send__file"/>
+        <childnode refid="51" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/send_file.h" line="37" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/send_file.h" bodystart="36" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classgr_1_1pmt__cpp_1_1send__file_1a981641bb0c05ea8f6f393447022f9689" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::send_file</scope><name>make</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1send__file_1a8707e7e213301e6cb94475603df621d6" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::send_file</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

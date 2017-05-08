@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classgr_1_1pmt__cpp_1_1start__sense" kind="class" prot="public">
+    <compoundname>gr::pmt_cpp::start_sense</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <includes refid="start__sense_8h" local="no">start_sense.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1pmt__cpp_1_1start__sense_1a8d8d8df7bc8a1656ae98056365eef784" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1pmt__cpp_1_1start__sense" kindref="compound">start_sense</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;start_sense&gt; gr::pmt_cpp::start_sense::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/start_sense.h" line="41" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/start_sense.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1start__sense_1af6669d1c7e4288a5e6baaebbb85ea40e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1pmt__cpp_1_1start__sense_1a8d8d8df7bc8a1656ae98056365eef784" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::pmt_cpp::start_sense::make</definition>
+        <argsstring>()</argsstring>
+        <name>make</name>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1pmt__cpp_1_1start__sense" kindref="compound">pmt_cpp::start_sense</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1pmt__cpp_1_1start__sense" kindref="compound">pmt_cpp::start_sense</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1pmt__cpp_1_1start__sense_1af6669d1c7e4288a5e6baaebbb85ea40e" kindref="member">pmt_cpp::start_sense::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/start_sense.h" line="51" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="64">
+        <label>gr::pmt_cpp::start_sense</label>
+        <link refid="classgr_1_1pmt__cpp_1_1start__sense"/>
+        <childnode refid="65" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="66">
+        <label>gr::pmt_cpp::start_sense</label>
+        <link refid="classgr_1_1pmt__cpp_1_1start__sense"/>
+        <childnode refid="67" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/start_sense.h" line="39" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/start_sense.h" bodystart="38" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense_1af6669d1c7e4288a5e6baaebbb85ea40e" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::start_sense</scope><name>make</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1start__sense_1a8d8d8df7bc8a1656ae98056365eef784" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::start_sense</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

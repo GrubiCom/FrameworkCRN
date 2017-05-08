@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classgr_1_1pmt__cpp_1_1file__connect" kind="class" prot="public">
+    <compoundname>gr::pmt_cpp::file_connect</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <includes refid="file__connect_8h" local="no">file_connect.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1pmt__cpp_1_1file__connect_1afa47faa14850044c1fdb9f5c263df5ee" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1pmt__cpp_1_1file__connect" kindref="compound">file_connect</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;file_connect&gt; gr::pmt_cpp::file_connect::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/file_connect.h" line="39" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/file_connect.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1file__connect_1ad1138cf59b515d9c8bb9fd68260d2c38" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1pmt__cpp_1_1file__connect_1afa47faa14850044c1fdb9f5c263df5ee" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::pmt_cpp::file_connect::make</definition>
+        <argsstring>()</argsstring>
+        <name>make</name>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1pmt__cpp_1_1file__connect" kindref="compound">pmt_cpp::file_connect</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1pmt__cpp_1_1file__connect" kindref="compound">pmt_cpp::file_connect</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1pmt__cpp_1_1file__connect_1ad1138cf59b515d9c8bb9fd68260d2c38" kindref="member">pmt_cpp::file_connect::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/file_connect.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>gr::pmt_cpp::file_connect</label>
+        <link refid="classgr_1_1pmt__cpp_1_1file__connect"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>gr::block</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="14">
+        <label>gr::pmt_cpp::file_connect</label>
+        <link refid="classgr_1_1pmt__cpp_1_1file__connect"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>gr::block</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/file_connect.h" line="37" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/file_connect.h" bodystart="36" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classgr_1_1pmt__cpp_1_1file__connect_1ad1138cf59b515d9c8bb9fd68260d2c38" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::file_connect</scope><name>make</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1file__connect_1afa47faa14850044c1fdb9f5c263df5ee" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::file_connect</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

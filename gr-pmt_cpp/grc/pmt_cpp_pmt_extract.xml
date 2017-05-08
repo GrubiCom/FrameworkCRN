@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<block>
+  <name>pmt_extract</name>
+  <key>pmt_cpp_pmt_extract</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.pmt_extract()</make>
+  
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in_pdu</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>content</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

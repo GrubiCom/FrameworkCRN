@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<block>
+  <name>PDU To File</name>
+  <key>pmt_cpp_PDU_json</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.PDU_json($filename)</make>
+   <param>
+    <name>Filename</name>
+    <key>filename</key>
+    <value>/tmp/pdus_%(hostname)s_%(time)s.json</value>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>pdus</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  
+  <sink>
+    <name>bool</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>file_ready</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

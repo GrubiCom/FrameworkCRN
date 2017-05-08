@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<block>
+  <name>transmission_data</name>
+  <key>pmt_cpp_transmission_data</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.transmission_data()</make>
+  <sink>
+    <name>signal_in</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  
+
+  <source>
+    <name>signal_out</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>packet</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+</block>

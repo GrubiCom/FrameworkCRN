@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags" kind="class" prot="public">
+    <compoundname>gr::pmt_cpp::PDU_remove_all_tags</compoundname>
+    <basecompoundref prot="public" virt="virtual">block</basecompoundref>
+    <includes refid="PDU__remove__all__tags_8h" local="no">PDU_remove_all_tags.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags_1ab6d1e8af96b40ca4392fb64ec71d599d" prot="public" static="no">
+        <type>boost::shared_ptr&lt; <ref refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags" kindref="compound">PDU_remove_all_tags</ref> &gt;</type>
+        <definition>typedef boost::shared_ptr&lt;PDU_remove_all_tags&gt; gr::pmt_cpp::PDU_remove_all_tags::sptr</definition>
+        <argsstring></argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/PDU_remove_all_tags.h" line="39" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/PDU_remove_all_tags.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags_1a100ab4c1b4dfc67cfc21581491731682" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags_1ab6d1e8af96b40ca4392fb64ec71d599d" kindref="member">sptr</ref></type>
+        <definition>static sptr gr::pmt_cpp::PDU_remove_all_tags::make</definition>
+        <argsstring>()</argsstring>
+        <name>make</name>
+        <briefdescription>
+<para>Return a shared_ptr to a new instance of <ref refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags" kindref="compound">pmt_cpp::PDU_remove_all_tags</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>To avoid accidental use of raw pointers, <ref refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags" kindref="compound">pmt_cpp::PDU_remove_all_tags</ref>&apos;s constructor is in a private implementation class. <ref refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags_1a100ab4c1b4dfc67cfc21581491731682" kindref="member">pmt_cpp::PDU_remove_all_tags::make</ref> is the public interface for creating new instances. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/PDU_remove_all_tags.h" line="49" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>&lt;+description of block+&gt; </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="29">
+        <label>block</label>
+      </node>
+      <node id="28">
+        <label>gr::pmt_cpp::PDU_remove_all_tags</label>
+        <link refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="31">
+        <label>block</label>
+      </node>
+      <node id="30">
+        <label>gr::pmt_cpp::PDU_remove_all_tags</label>
+        <link refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags"/>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/PDU_remove_all_tags.h" line="37" column="1" bodyfile="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/include/pmt_cpp/PDU_remove_all_tags.h" bodystart="36" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags_1a100ab4c1b4dfc67cfc21581491731682" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::PDU_remove_all_tags</scope><name>make</name></member>
+      <member refid="classgr_1_1pmt__cpp_1_1PDU__remove__all__tags_1ab6d1e8af96b40ca4392fb64ec71d599d" prot="public" virt="non-virtual"><scope>gr::pmt_cpp::PDU_remove_all_tags</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

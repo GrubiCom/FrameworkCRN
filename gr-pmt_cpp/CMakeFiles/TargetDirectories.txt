@@ -1,0 +1,12 @@
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/swig/CMakeFiles/_pmt_cpp_swig.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/swig/CMakeFiles/_pmt_cpp_swig_doc_tag.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/swig/CMakeFiles/_pmt_cpp_swig_swig_tag.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/docs/doxygen/CMakeFiles/doxygen_target.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/CMakeFiles/gnuradio-pmt_cpp.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/swig/CMakeFiles/pmt_cpp_swig_swig_2d0df.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/swig/CMakeFiles/pmt_cpp_swig_swig_doc.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/apps/CMakeFiles/pygen_apps_9a6dd.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/python/CMakeFiles/pygen_python_cec7d.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/swig/CMakeFiles/pygen_swig_fec4b.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/CMakeFiles/test-pmt_cpp.dir
+/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/CMakeFiles/uninstall.dir

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<block>
+  <name>wait_first_ack</name>
+  <key>pmt_cpp_wait_first_ack</key>
+  <category>pmt_cpp</category>
+  <import>import pmt_cpp</import>
+  <make>pmt_cpp.wait_first_ack()</make>
+  
+  <sink>
+    <name>fisrt_message</name>
+    <type>message</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>message_repeat</name>
+    <type>message</type>
+  </source>
+</block>

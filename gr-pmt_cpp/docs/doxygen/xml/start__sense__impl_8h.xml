@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="start__sense__impl_8h" kind="file">
+    <compoundname>start_sense_impl.h</compoundname>
+    <includes refid="start__sense_8h" local="no">pmt_cpp/start_sense.h</includes>
+    <incdepgraph>
+      <node id="524">
+        <label>pmt_cpp/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="525" relation="include">
+        </childnode>
+      </node>
+      <node id="523">
+        <label>pmt_cpp/start_sense.h</label>
+        <link refid="start__sense_8h"/>
+        <childnode refid="524" relation="include">
+        </childnode>
+        <childnode refid="526" relation="include">
+        </childnode>
+      </node>
+      <node id="525">
+        <label>gnuradio/attributes.h</label>
+      </node>
+      <node id="522">
+        <label>start_sense_impl.h</label>
+        <link refid="start_sense_impl.h"/>
+        <childnode refid="523" relation="include">
+        </childnode>
+      </node>
+      <node id="526">
+        <label>gnuradio/block.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classgr_1_1pmt__cpp_1_1start__sense__impl" prot="public">gr::pmt_cpp::start_sense_impl</innerclass>
+    <innernamespace refid="namespacegr">gr</innernamespace>
+    <innernamespace refid="namespacegr_1_1pmt__cpp">gr::pmt_cpp</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/ariel/Documentos/GNURADIO/Blocks_trunk/gr-pmt_cpp/lib/start_sense_impl.h"/>
+  </compounddef>
+</doxygen>
