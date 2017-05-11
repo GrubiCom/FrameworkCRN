@@ -5,24 +5,25 @@
 SLAVE_SENSE="/tmp/sense.txt"
 MASTER_SENSE="tmp/res_sense.txt"
 BEST_CHANNEL="/tmp/master_channels.txt"
+BEST_CHANNEL_SLAVE="/tmp/slave_channels.txt"
 SENSE_DATA=".tmp_res_sense.dat"
 CH_RESULT=".tmp_best_channel.dat"
-
-if [ -e $BEST_CHANNEL ]; then
-	
-	cp $BEST_CHANNEL ./$CH_RESULT
-	echo "..."
-	
-else
-	
-	echo "ERROR: best channel information not found!"
-	exit 1
-fi
 
 if [ -e $SLAVE_SENSE ]; then
 	
 	cp $SLAVE_SENSE ./$SENSE_DATA
 	
+	if [ -e $BEST_CHANNEL_SLAVE ]; then
+	
+		cp $BEST_CHANNEL_SLAVE ./$CH_RESULT
+		sed -i 's/e.*//g' $CH_RESULT
+
+	else
+	
+		echo "ERROR: best channel information not found!"
+		exit 1
+	fi
+
 gnuplot <<PDF_PLOT
 	set terminal pdf size 6,3 font "Courier Bold"
 	set style line 81 lt 0  
