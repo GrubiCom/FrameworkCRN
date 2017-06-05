@@ -37,117 +37,118 @@
  * todas as informacoes necessarias.
  */
 namespace gr {
-  namespace pmt_cpp {
-
-    send_file::sptr
-    send_file::make()
-    {
-      return gnuradio::get_initial_sptr
-        (new send_file_impl());
-    }
-
-    /*
-     * The private constructor
-     */
-    send_file_impl::send_file_impl()
-      : gr::block("send_file",
-              gr::io_signature::make(0,0,0),
-              gr::io_signature::make(0,0,0))
-    {
-        message_port_register_out(pmt::mp("pdu"));      //Registra porta de saida pdu
-    	
-    	message_port_register_in(pmt::mp("file_ready"));//Registra porta de entrada file_ready
-    	set_msg_handler(pmt::mp("file_ready"), boost::bind(&send_file_impl::handle_msg, this, _1));
-    
-    }
-
-    /*
-     * Our virtual destructor.
-     */
-    send_file_impl::~send_file_impl()
-    {
-    }
-    /* handle_msg
-     * \param msg booleano
-     */
-    void send_file_impl::handle_msg(pmt::pmt_t msg) {
-        ready=pmt::to_bool(msg);
-        std::cout << ready << "send_file" << std::endl;
-        std::string line, freq, power, freqAnt, send;
-        std::istringstream delim(":");
-        double  avg = 0;
-        double cont = 0;
-        bool start = true;
-        char*  sz;
-        /*Se arquivo pronto entao podemos ler*/
-        if(!ready){
-            std::ifstream file; // open file
-            file.open("/tmp/sense.txt");
-            if (file.is_open()){
-                while(!file.eof()){
-                    getline(file,line);
-                    int pos;
-                    pos = line.find(":");
-                    freq = line.substr(0,pos-2);
-                    power = line.substr(pos+1);
-                    if (start){
-                        avg = std::strtod(power.c_str(),&sz);
-                        freqAnt = freq;
-                        cont++;
-                        start = false;
-                    }else{
-                        if (!freqAnt.compare(freq)){
-                            if (std::strtod(power.c_str(),&sz) > avg) {
-                                avg = std::strtod(power.c_str(),&sz);
-                            }                       
-                        freqAnt = freq;
-                        cont++;
-                        }else {
-                            send.append(freqAnt);
-                            send.append(":");
-                            send.append(boost::lexical_cast<std::string>(avg));
-                            send.append(";");
-                            
-
-                            avg = 0;
-                            avg += std::strtod(power.c_str(),&sz);
-                            freqAnt = freq;
-                            cont = 0;
-                        }
-                    }
-                }
-                //file.clear();
-                file.close();
-                std::remove("/tmp/sense.txt"); //remove o arquivo do disco
-                
-                std::string msg1 , msg2, msg3;
-                int ter = send.length()/3; //divide mensagem em 3 partes
-                msg1 = "<G"+send.substr(0,ter)+">";
-                msg2 = "<G"+send.substr(ter, (ter))+">";// posição inicial, nro de posições à frente
-                msg3 = "<G"+send.substr(ter+ter, send.length())+">";
-                
-
-                sleep(1);
-                message_port_pub(pmt::mp("pdu"), pmt::intern(msg1));
-                std::cout << msg1 << "msg1"<< std::endl;
-                
-                sleep(2);
-                message_port_pub(pmt::mp("pdu"), pmt::intern(msg2));
-                std::cout << msg2 << "msg2"<< std::endl;
-
-                sleep(2);
-                message_port_pub(pmt::mp("pdu"), pmt::intern(msg3));
-                std::cout << msg3 << "msg3"<< std::endl;
-
-                std::cout << send.length() << "tamanho"<< std::endl;
-            }else{
-                std::cerr << "file ../sense.txt don't exist" << std::endl;
-                std::exit(-1);
-            }
-            
-        }
-    }
-
-  } /* namespace pmt_cpp */
+	
+	namespace pmt_cpp {
+		
+		send_file::sptr
+		
+		send_file::make(){
+			
+			return gnuradio::get_initial_sptr(new send_file_impl());
+		}
+		
+		send_file_impl::send_file_impl() : gr::block("send_file",
+							     gr::io_signature::make(0,0,0),
+							     gr::io_signature::make(0,0,0)){
+			
+			message_port_register_out(pmt::mp("pdu"));      //Registra porta de saida pdu
+			message_port_register_in(pmt::mp("file_ready"));//Registra porta de entrada file_ready
+			set_msg_handler(pmt::mp("file_ready"), boost::bind(&send_file_impl::handle_msg, this, _1));
+		}
+		
+		send_file_impl::~send_file_impl(){}
+		
+		void send_file_impl::handle_msg(pmt::pmt_t msg) {
+			
+			ready=pmt::to_bool(msg);
+			std::cout << ready << "send_file" << std::endl;
+			std::string line, freq, power, freqAnt, send;
+			std::istringstream delim(":");
+			double  avg = 0;
+			double cont = 0;
+			bool start = true;
+			char*  sz;
+			
+			/*Se arquivo pronto entao podemos ler*/
+			if(!ready){
+				
+				std::ifstream file; // open file
+				file.open("/tmp/sense.txt");
+				
+				if (file.is_open()){
+					
+					while(!file.eof()){
+						
+						getline(file,line);
+						int pos;
+						pos = line.find(":");
+						freq = line.substr(0,pos-2);
+						power = line.substr(pos+1);
+						
+						if (start){
+							
+							avg = std::strtod(power.c_str(),&sz);
+							freqAnt = freq;
+							cont++;
+							start = false;
+							
+						} else {
+							
+							if (!freqAnt.compare(freq)){
+								
+								if (std::strtod(power.c_str(),&sz) > avg) {
+									
+									avg = std::strtod(power.c_str(),&sz);
+								}
+								
+								freqAnt = freq;
+								cont++;
+								
+							} else {
+								
+								send.append(freqAnt);
+								send.append(":");
+								send.append(boost::lexical_cast<std::string>(avg));
+								send.append(";");
+								
+								avg = 0;
+								avg += std::strtod(power.c_str(),&sz);
+								freqAnt = freq;
+								cont = 0;
+							}
+						}
+					}
+					
+					//file.clear();
+					file.close();
+					// std::remove("/tmp/sense.txt"); //remove o arquivo do disco
+					
+					std::string msg1 , msg2, msg3;
+					int ter = send.length()/3; //divide mensagem em 3 partes
+					msg1 = "<G"+send.substr(0,ter)+">";
+					msg2 = "<G"+send.substr(ter, (ter))+">";// posição inicial, nro de posições à frente
+					msg3 = "<G"+send.substr(ter+ter, send.length())+">";
+					
+					sleep(1);
+					message_port_pub(pmt::mp("pdu"), pmt::intern(msg1));
+					std::cout << msg1 << "msg1"<< std::endl;
+					
+					sleep(2);
+					message_port_pub(pmt::mp("pdu"), pmt::intern(msg2));
+					std::cout << msg2 << "msg2"<< std::endl;
+					
+					sleep(2);
+					message_port_pub(pmt::mp("pdu"), pmt::intern(msg3));
+					std::cout << msg3 << "msg3"<< std::endl;
+					
+					std::cout << send.length() << "tamanho"<< std::endl;
+					
+				} else {
+					
+					std::cerr << "file ../sense.txt don't exist" << std::endl;
+					std::exit(-1);
+				}
+			}
+		}
+	} /* namespace pmt_cpp */
 } /* namespace gr */
-
