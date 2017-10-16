@@ -36,5 +36,8 @@ from data_extract_master import data_extract_master
 from annp import annp
 from cogmac import cogmac
 from RandomForest import RandomForest
+from HMM import HMM
+
+
 
 #

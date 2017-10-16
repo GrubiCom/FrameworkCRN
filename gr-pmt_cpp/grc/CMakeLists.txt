@@ -45,5 +45,7 @@ install(FILES
     pmt_cpp_timer.xml
     pmt_cpp_ahp.xml
     pmt_cpp_set_ccc_master.xml
-    pmt_cpp_RandomForest.xml DESTINATION share/gnuradio/grc/blocks
+    pmt_cpp_RandomForest.xml
+    pmt_cpp_HMM.xml
+    DESTINATION share/gnuradio/grc/blocks
 )

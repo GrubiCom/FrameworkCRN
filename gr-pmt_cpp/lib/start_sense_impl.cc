@@ -112,6 +112,7 @@ namespace gr {
                     message_port_pub(pmt::mp("pmt::mp"), pmt::cons(pmt::mp("freq"),pmt::mp(i)));    //envia a nova frequencia para a placa USRP
                     //sleep(1);  
                     usleep(1000000);//Sleep de 1 segundo
+                    //to make this part better look at https://files.ettus.com/manual/page_general.html
                 }
                 
                 time(&timer2);

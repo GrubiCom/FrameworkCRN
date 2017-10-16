@@ -35,7 +35,9 @@ GR_PYTHON_INSTALL(
     data_extract_master.py
     annp.py
     cogmac.py
-    RandomForest.py DESTINATION ${GR_PYTHON_DIR}/pmt_cpp
+    RandomForest.py
+    HMM.py
+    DESTINATION ${GR_PYTHON_DIR}/pmt_cpp
 )
 
 ########################################################################

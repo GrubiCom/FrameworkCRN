@@ -4,7 +4,7 @@
 # GNU Radio Python Flow Graph
 # Title: Cognitive network over IEEE 802.15.4
 # Author: Ariel Marques
-# Generated: Wed May  3 17:13:44 2017
+# Generated: Tue Aug 15 19:53:15 2017
 ##################################################
 
 import os
@@ -90,6 +90,7 @@ class Cog_sense(gr.top_block):
         self.msg_connect((self.pmt_cpp_ACK_0, 'first'), (self.pmt_cpp_wait_first_ack_0, 'fisrt_message'))
         self.msg_connect((self.pmt_cpp_file_connect_0, 'bool'), (self.File_Recorder_0, 'in_pdu'))
         self.msg_connect((self.pmt_cpp_pmt_extract2_0, 'info_neighbor'), (self.IEEE_802_15_4_0, 'msg'))
+        self.msg_connect((self.pmt_cpp_pmt_extract2_0, 'Ack'), (self.pmt_cpp_ACK_0, 'Ack'))
         self.msg_connect((self.pmt_cpp_pmt_extract2_0, 'sense'), (self.pmt_cpp_start_sense_0, 'pmt::dict'))
         self.msg_connect((self.pmt_cpp_pmt_extract2_0, 'share'), (self.pmt_cpp_start_share_0, 'pmt::dict'))
         self.msg_connect((self.pmt_cpp_send_file_ACK_2, 'pdu'), (self.pmt_cpp_ACK_0, 'File_Ready'))

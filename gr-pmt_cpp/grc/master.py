@@ -3,18 +3,8 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: IEEE 802.15.4 Transceiver using OQPSK PHY
-# Generated: Wed May  3 16:51:12 2017
+# Generated: Tue Aug 15 19:52:46 2017
 ##################################################
-
-if __name__ == '__main__':
-    import ctypes
-    import sys
-    if sys.platform.startswith('linux'):
-        try:
-            x11 = ctypes.cdll.LoadLibrary('libX11.so')
-            x11.XInitThreads()
-        except:
-            print "Warning: failed to XInitThreads()"
 
 import os
 import sys
@@ -26,17 +16,15 @@ from gnuradio import gr
 from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
-from grc_gnuradio import wxgui as grc_wxgui
 from optparse import OptionParser
 import pmt_cpp
 import time
-import wx
 
 
-class master(grc_wxgui.top_block_gui):
+class master(gr.top_block):
 
     def __init__(self):
-        grc_wxgui.top_block_gui.__init__(self, title="IEEE 802.15.4 Transceiver using OQPSK PHY")
+        gr.top_block.__init__(self, "IEEE 802.15.4 Transceiver using OQPSK PHY")
 
         ##################################################
         # Blocks
@@ -98,7 +86,6 @@ class master(grc_wxgui.top_block_gui):
         self.msg_connect((self.pmt_cpp_preprocessor_master_0, 'rna_file'), (self.pmt_cpp_annp_0, 'in'))
         self.msg_connect((self.pmt_cpp_preprocessor_master_0, 'rna_file'), (self.pmt_cpp_timer_0, 'in2'))
         self.msg_connect((self.pmt_cpp_preprocessor_master_0, 'tuned'), (self.uhd_usrp_sink_0, 'command'))
-        self.msg_connect((self.pmt_cpp_preprocessor_master_0, 'tuned'), (self.uhd_usrp_source_0, 'command'))
         self.msg_connect((self.pmt_cpp_set_ccc_master_0, 'signal'), (self.pmt_cpp_message_generation_0, 'signal'))
         self.msg_connect((self.pmt_cpp_set_ccc_master_0, 'ccc'), (self.uhd_usrp_sink_0, 'command'))
         self.msg_connect((self.pmt_cpp_set_ccc_master_0, 'ccc'), (self.uhd_usrp_source_0, 'command'))
@@ -121,8 +108,13 @@ def main(top_block_cls=master, options=None):
         print "Error: failed to enable real-time scheduling."
 
     tb = top_block_cls()
-    tb.Start(True)
-    tb.Wait()
+    tb.start()
+    try:
+        raw_input('Press Enter to quit: ')
+    except EOFError:
+        pass
+    tb.stop()
+    tb.wait()
 
 
 if __name__ == '__main__':

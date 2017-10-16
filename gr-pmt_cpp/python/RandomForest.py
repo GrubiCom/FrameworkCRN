@@ -49,8 +49,8 @@ class RandomForest(gr.basic_block):
             print "INIT RANDOM FOREST"
             self.f = open("/tmp/res_sense.txt", "r")
             self.s = self.f.readline()
-            i = 0;
-            hour = [];
+            i = 0
+            hour = []
             freq = []
             power = []
             bestPower = -0.5
