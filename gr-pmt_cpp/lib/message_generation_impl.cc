@@ -110,8 +110,8 @@ namespace gr {
         max = 0;
         if (file.is_open()){
             while(getline(file,line)){
-                if(true){//cycle == 0){
-                    d_msg = pmt::intern("<"+line+":2:0.8:5.8>");
+                if(cycle == 0){
+                    d_msg = pmt::intern("<"+line+":2:0.8:5.8>");//CRIA A MSG DE SENSE PARA CADA VIZINHO
                     std::cout << pmt::symbol_to_string(d_msg);
                     message_port_pub( pmt::mp("msg"), d_msg );
                     usleep(200000);
@@ -153,6 +153,7 @@ namespace gr {
 		
 		{
                         if(count> 10){
+                            std::cout << "[MASTER][MESSAGE GENERATION]: ACABOU"<< std::endl;
                             exit(1);
                         }
                         
@@ -167,11 +168,11 @@ namespace gr {
                             
                             std::cout<< "[MASTER][MESSAGE GENERATION]: Send neighbors discovery" << std::endl;
                             //rmdir("/tmp/Acknowledgement");      
-                            int b ;//= std::system("rm -rf /tmp/results/" );
+                            int b = std::system("rm -rf /tmp/results/" );
                             b = std::system("rm -rf /tmp/Acknowledgement/" );
                             remove("/tmp/neighbors.txt");
                             remove("/tmp/neighbors_aux.txt");
-                            //remove("/tmp/master_channels.txt");
+                            remove("/tmp/master_channels.txt");
                             remove("/tmp/acks_sense.txt");
                             
                             for (int i = 0; i < 10; i++){

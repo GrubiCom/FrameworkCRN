@@ -79,6 +79,8 @@ namespace gr {
         double dif = difftime(t2,timer1);
         int i = 0;
         int a = 0;
+        
+        std::cout <<"[SLAVE][TRANSMISSION DATA]: INICIANDO PRIMEIRO" <<std::endl;
 
 
         std::string data = "00011110000000000000000000000000000000000000000000";
@@ -162,14 +164,15 @@ namespace gr {
                             std::cout <<"[SLAVE][TRANSMISSION DATA]: BUSY CHANNEL>> "<<d_power <<std::endl;
 
                             srand (time(NULL));
-                            int time_sleep_power = std::rand()%  13000 + 9000;
+                            int time_sleep_power = std::rand()%  14000 + 10000;
                             usleep(time_sleep_power);
 
                         }
                     } 
                     arq.close();
                     time(&t2);
-                    dif = difftime(t2,timer1);    
+                    dif = difftime(t2,timer1);
+                    std::cout <<"[SLAVE][TRANSMISSION DATA]: MEU DIFF TEMPO:: "<<dif <<std::endl;
 
                 }
                 
@@ -180,18 +183,21 @@ namespace gr {
                 int time_sleep_power = std::rand()%  13000 + 9000;
                 usleep(time_sleep_power);
                 
-            }
+            }//end else
             time(&t2);
             dif = difftime(t2,timer1);
             
-        }
+            
+            
+            
+        }//end while
         i=i+a;
         std::cout <<"[SLAVE][TRANSMISSION DATA]: FINISH" <<std::endl;
         std::fstream out; 
         out.open("/tmp/number_transmission_for_cycle.txt", std::ios::out | std::ios::app);
         if(out.is_open()){
             out << i<< std::endl;
-            //std::cout << "[MASTER][MESSAGE PARSER]:SALVANDO "<< std::endl;
+            std::cout << "[MASTER][MESSAGE PARSER]:SALVANDO "<< std::endl;
         }
         out.close();
         i = 0;

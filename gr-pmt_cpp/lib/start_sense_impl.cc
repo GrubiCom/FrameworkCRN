@@ -86,7 +86,8 @@ namespace gr {
 
             if(pmt::is_dict(msg)){// se vier um dicionário
                 acabooo++;
-                if (acabooo > 1){
+                if (acabooo > 10){
+                    std::cout << "[START SENSE]: ACABOU"<< std::endl;
                     exit(1);
                 }
                 std::cout << "[START SENSE]: STARTED"<< std::endl;
