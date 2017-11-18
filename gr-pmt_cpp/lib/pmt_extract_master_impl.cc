@@ -1,6 +1,7 @@
 /* -*- c++ -*- */
 /* 
  * Copyright 2015 <+YOU OR YOUR COMPANY+>.
+ * 2017 - Modified by <Luccas Rafael Martins Pinto>.
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -128,7 +129,7 @@ namespace gr {
             const char dir_path[] = "/tmp/Acknowledgement/";
             boost::filesystem::path dir(dir_path);
             if(!boost::filesystem::exists(dir)){
-               boost::filesystem::create_directories(dir); 
+               boost::filesystem::create_directories(dir);//cria diretorio caso nao exista 
             }
             std::string filename = "/tmp/Acknowledgement/acks";
             filename.push_back(str[pos+3]);//ID
@@ -208,7 +209,7 @@ namespace gr {
                     while(getline(file,neighbor_f)){
 
 
-                        if(neighbor_f.compare(id_neighbor) == 0){
+                        if(neighbor_f.compare(id_neighbor) == 0){//compara se sao mesmo valor
                             contained = true;
                         }
                     }
@@ -221,7 +222,7 @@ namespace gr {
                     std::cout << "[MASTER][MESSAGE PARSER]: "<<str << std::endl;
                     file1.open(filename.c_str(), std::ios::in | std::ios::out | std::ios::app); 
                     if(file1.is_open()){
-                        file1 << id_neighbor<< std::endl;
+                        file1 << id_neighbor<< std::endl;//escreve o id do vizinho no arquivo
                         file1.close();
                     }
                         
@@ -234,7 +235,7 @@ namespace gr {
                         out.close();
                     }
                     received = 0;
-                    sent=0;
+                    3=0;
                
                                
             }
@@ -392,7 +393,13 @@ namespace gr {
             se.open(filename1.c_str(), std::ios::out | std::ios::app);
             se << sent<< std::endl;
             se.close();
-        }else{
+        }else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'N'){
+            //TODO
+            std::cout << "DEU CERTO ESSA MERDA" << std::endl;
+            exit(1);
+        }
+        }
+        else{
             //std::cout << "[MASTER][MESSAGE PARSER]: NADA "<<str << std::endl;
         }
         for (int i = 0; i < 50; i++) str[i] = 0;

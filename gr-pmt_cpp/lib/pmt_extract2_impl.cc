@@ -3,6 +3,8 @@
  * Copyright 2015 Ariel Marques.
  * Universidade Federal de Lavras - UFLA
  * Departamento de Ciencia da Computacao - DCC
+ *
+ * 2017 - Modified by <Luccas Rafael Martins Pinto>.
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -159,7 +161,11 @@ namespace gr {
 					
 					int time = std::rand()% 400000 + 100000;
 					usleep(time);
-					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<N:"+boost::to_string(idUsrp)+">"));
+					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<N:"+boost::to_string(idUsrp)+">"));//resposta para o master
+                                        
+                                        int time = std::rand()% 400000 + 100000;
+					usleep(time);
+					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
 					
 					// sense = false;
 					
@@ -303,7 +309,7 @@ namespace gr {
 					std::string su = st.substr(7,po-7);
 					std::size_t terminal = st.find(">");
 					std::size_t p = st.find_last_of(":",terminal-1);
-					//std::cout << "[SLAVE][MASSAGE PARSER]: RECEIVED PACKET DATA TRANSMISSION " <<received << std::endl;
+					std::cout << "[SLAVE][MASSAGE PARSER]: RECEIVED PACKET DATA TRANSMISSION " <<received << std::endl;
 					packet_received++;
 					std::string filename = "/tmp/";
 					filename.append("received_pack");
@@ -406,7 +412,7 @@ namespace gr {
 					}
 				}       
 				
-			} else if (str[pos+1] != idUsrp && str[pos+1] != '0'){
+			} else if (str[pos+1] != idUsrp && str[pos+1] != '0'){//modificar esse if
 				
 				//std::cout << "[SLAVE][MESSAGE PARSER]: Pacote nao destinado a usrp de ID: "<<idUsrp << std::endl;
 				
