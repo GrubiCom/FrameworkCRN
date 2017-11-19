@@ -1,6 +1,7 @@
 /* -*- c++ -*- */
 /* 
  * Copyright 2015 <+YOU OR YOUR COMPANY+>.
+ * 
  * 2017 - Modified by <Luccas Rafael Martins Pinto>.
  * 
  * This is free software; you can redistribute it and/or modify
@@ -235,7 +236,7 @@ namespace gr {
                         out.close();
                     }
                     received = 0;
-                    3=0;
+                    sent=0;
                
                                
             }
@@ -397,9 +398,7 @@ namespace gr {
             //TODO
             std::cout << "DEU CERTO ESSA MERDA" << std::endl;
             exit(1);
-        }
-        }
-        else{
+        }else{
             //std::cout << "[MASTER][MESSAGE PARSER]: NADA "<<str << std::endl;
         }
         for (int i = 0; i < 50; i++) str[i] = 0;

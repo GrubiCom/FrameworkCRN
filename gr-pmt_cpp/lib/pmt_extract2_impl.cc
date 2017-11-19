@@ -163,8 +163,8 @@ namespace gr {
 					usleep(time);
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<N:"+boost::to_string(idUsrp)+">"));//resposta para o master
                                         
-                                        int time = std::rand()% 400000 + 100000;
-					usleep(time);
+                                        int time_2 = std::rand()% 400000 + 100000;
+					usleep(time_2);
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
 					
 					// sense = false;
@@ -309,7 +309,7 @@ namespace gr {
 					std::string su = st.substr(7,po-7);
 					std::size_t terminal = st.find(">");
 					std::size_t p = st.find_last_of(":",terminal-1);
-					std::cout << "[SLAVE][MASSAGE PARSER]: RECEIVED PACKET DATA TRANSMISSION " <<received << std::endl;
+					//std::cout << "[SLAVE][MASSAGE PARSER]: RECEIVED PACKET DATA TRANSMISSION " <<packet_received << std::endl;
 					packet_received++;
 					std::string filename = "/tmp/";
 					filename.append("received_pack");
