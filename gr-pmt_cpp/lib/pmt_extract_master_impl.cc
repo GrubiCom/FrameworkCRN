@@ -92,14 +92,14 @@ namespace gr {
         size_t offset(0);
         //Tamanho do PDU
         size_t len = pmt::length(vector);
-        std::string lut = "0123456789:.,;-GKSTsN<>";//18 caracteres regex
+        std::string lut = "0123456789:.,;-GKSTsN<>B";//18 caracteres regex
         int count = 0;
         char str[50];
 
         const uint8_t* d = (const uint8_t*) pmt::uniform_vector_elements(vector, offset);
         for(size_t i=0; i<len; i+=16){
                 for(size_t j=i; j<std::min(i+16,len); j++){
-                        for (size_t x=0; x<23; x++){
+                        for (size_t x=0; x<24; x++){
                                 if (lut[x] == d[j]) {
                                         str[count] = d[j];
 
@@ -395,9 +395,31 @@ namespace gr {
             se << sent<< std::endl;
             se.close();
         }else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'N'){
+            
+            std::string filename_table = "/tmp/routing_table.txt";
+            std::fstream file_table;
+            /*
+            //se arquivo nao existe cria o arquivo
+            if(!boost::filesystem::exists("/tmp/routing_table.txt")){
+                std::cout << "CRIANDO TABELA DE ROTEAMENTO" << std::endl;
+                file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                
+                std::string msg_to_table;
+                msg_to_table.append(str[pos+5]);
+                //msg_to_table.append(" ");
+                
+                file_table.close();
+            }*/
+            
+            std::cout << str << std::endl;//mensagem debug
             //TODO
-            std::cout << "DEU CERTO ESSA MERDA" << std::endl;
+            std::cout << "DEU CERTO" << std::endl;
             exit(1);
+        }else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'B'){
+            
+            std::cout << "[MASTER][MESSAGE PARSER]: SLAVE BROADCAST "<<str << std::endl;
+            exit(1);
+            
         }else{
             //std::cout << "[MASTER][MESSAGE PARSER]: NADA "<<str << std::endl;
         }

@@ -101,7 +101,7 @@ namespace gr {
 			
 			//Tamanho do PDU
 			size_t len = pmt::length(vector);
-			std::string lut = "0123456789:.,;-ANT<>"; //17 caracteres regex
+			std::string lut = "0123456789:.,;-ANT<>B"; //17 caracteres regex
 			int count = 0;
 			char str[50];
 			
@@ -111,7 +111,7 @@ namespace gr {
 				
 				for(size_t j = i; j < std::min(i+16, len); j++){
 					
-					for (size_t x = 0; x < 20; x++){
+					for (size_t x = 0; x < 21; x++){
 						
 						if (lut[x] == d[j]) {
 							
@@ -161,11 +161,13 @@ namespace gr {
 					
 					int time = std::rand()% 400000 + 100000;
 					usleep(time);
+                                        //<N:ID>
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<N:"+boost::to_string(idUsrp)+">"));//resposta para o master
                                         
                                         int time_2 = std::rand()% 400000 + 100000;
 					usleep(time_2);
-					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
+                                        //Primeiro hop <0:B:ID:1>
+					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
 					
 					// sense = false;
 					
@@ -392,7 +394,7 @@ namespace gr {
 					
 					while (getline(file,neighbor_f)){
 						
-						if(neighbor_f.compare(id_neighbor) == 0 ){
+						if(neighbor_f.compare(id_neighbor) == 0 ){//verifica existencia de vizinho no arquivo
 							contained = true;
 						}
 					}
@@ -402,7 +404,7 @@ namespace gr {
 				
 				if (!contained  && (id_neighbor.compare(boost::to_string(idUsrp))!= 0)){
 
-					std::cout << "[SLAVE][MESSAGE PARSER]: Saved "<<str << std::endl;
+					//std::cout << "[SLAVE][MESSAGE PARSER]: Saved "<<str << std::endl;
 					file1.open(filename.c_str(), std::ios::in | std::ios::out | std::ios::app); 
 					
 					if(file1.is_open()){
@@ -412,7 +414,7 @@ namespace gr {
 					}
 				}       
 				
-			} else if (str[pos+1] != idUsrp && str[pos+1] != '0'){//modificar esse if
+			} else if (str[pos+1] != idUsrp && str[pos+1] != '0'){//modificar esse if para o slave broadcast
 				
 				//std::cout << "[SLAVE][MESSAGE PARSER]: Pacote nao destinado a usrp de ID: "<<idUsrp << std::endl;
 				
