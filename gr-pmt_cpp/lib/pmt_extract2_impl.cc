@@ -143,7 +143,7 @@ namespace gr {
 				}
 				
 				//std::cout <<"Info: "<<str<< std::endl;
-				if(str[pos+3] == '0'){		//<0:0> Broadcast:ID_MSG
+				if(str[pos+3] == '0'){ //step <0:0> Broadcast:ID_MSG
 					
 					std::cout<< "[SLAVE][MESSAGE PARSER]:Discovery of neighbors " << "<N:"<<boost::to_string(idUsrp)<<">"<< std::endl;
 					std::fstream out; 
@@ -161,11 +161,12 @@ namespace gr {
 					
 					int time = std::rand()% 400000 + 100000;
 					usleep(time);
-                                        //<N:ID>
-					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<N:"+boost::to_string(idUsrp)+">"));//resposta para o master
+                                        //Primeira resposta <0 : N : myID : srcID : hop>
+					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+boost::to_string(idUsrp)+":1>"));//resposta para o master
                                         
                                         int time_2 = std::rand()% 400000 + 100000;
 					usleep(time_2);
+                                        
                                         //Primeiro hop <0:B:ID:1>
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
 					
@@ -173,7 +174,7 @@ namespace gr {
 					
 				} else if (str[pos+3] == '1'){		// Comunicação de quem é o master //3
 					
-					std::cout << "[SLAVE][MESSAGE PARSER]:MASTER" << std::endl;
+					std::cout << "[SLAVE][MESSAGE PARSER]:MASTER" << std::endl; //TALVEZ COMENTAR ESSE BLOCO
 					idMaster = str[pos+5]; //5
 					
 				} else if (str[pos+3] =='2' && !sense){	// Comunicação para realizar sense
@@ -226,7 +227,7 @@ namespace gr {
 						su.replace(f, std::string(",").length(), ".");
 					}
 					
-					std::cout << "SubString:su "<< su << std::endl;
+					std::cout << "SubString:su = "<< su << std::endl;
 					std::stringstream ss(su);
 					
 					fMax = std::atof(ss.str().c_str());
@@ -268,7 +269,7 @@ namespace gr {
 					share = true;
 					message_port_pub(pmt::mp("share"), p_dict);
 					
-				} else if (str[pos+1] == idUsrp && str[pos+3] == '5' ){
+				} else if (str[pos+1] == idUsrp && str[pos+3] == '5' ){//confirmacao da mensagem do tipo 4(dados)
 					
 					sense = false;
 					share = false;
@@ -302,9 +303,9 @@ namespace gr {
 					}
 					
 					//packet_received++;
-				} else if (str[pos+1] == idUsrp && str[pos+3] == '4' ) {
+				} else if (str[pos+1] == idUsrp && str[pos+3] == '4' ) {//Comunicacao do tipo dados
 					
-					//std::cout << "[MASTER][MESSAGE PARSER]: DATA "<< std::endl;
+					//std::cout << "[SLAVE][MESSAGE PARSER]: DATA "<< std::endl;
 					
 					std::string st(str); 
 					std::size_t po = st.find(":",7);
@@ -346,7 +347,7 @@ namespace gr {
 				std::string st(str); 
 				std::size_t pos = st.find_last_of(":");
 				std::size_t terminal = st.find_last_of(">");
-				std::string::size_type sz;
+				std::string::size_type sz;//TALVEZ COMENTAR
 				int bla = std::atoi(st.substr(pos+1,terminal).c_str());
 				
 				int a = bla;
@@ -359,7 +360,7 @@ namespace gr {
 					if(out.is_open()){
 						
 						out << a;
-						std::cout << "[SLAVE][MESSAGE PARSER]:SALVANDO "<< a <<std::endl;
+						std::cout << "[SLAVE][MESSAGE PARSER]:SALVANDO ACK = 1"<< a <<std::endl;
 						
 					} else {
 						
@@ -414,11 +415,17 @@ namespace gr {
 					}
 				}       
 				
-			} else if (str[pos+1] != idUsrp && str[pos+1] != '0'){//modificar esse if para o slave broadcast
+			} else if (str[pos+1] == '0' && str[pos+3] == 'N'){//modificar esse if para o slave broadcast
 				
 				//std::cout << "[SLAVE][MESSAGE PARSER]: Pacote nao destinado a usrp de ID: "<<idUsrp << std::endl;
 				
-			} else {
+			} else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'B'){
+            
+                                std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<<str << std::endl;
+                                exit(1);
+            
+                        } 
+                        else {
 				
 				//str = NULL; std::free(str);
 				std::cout << "[SLAVE][MESSAGE PARSER]: Lixo" << std::endl;

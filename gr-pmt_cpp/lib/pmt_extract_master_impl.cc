@@ -396,20 +396,13 @@ namespace gr {
             se.close();
         }else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'N'){
             
+            
+            std::ofstream file_table;
             std::string filename_table = "/tmp/routing_table.txt";
-            std::fstream file_table;
-            /*
-            //se arquivo nao existe cria o arquivo
-            if(!boost::filesystem::exists("/tmp/routing_table.txt")){
-                std::cout << "CRIANDO TABELA DE ROTEAMENTO" << std::endl;
-                file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
-                
-                std::string msg_to_table;
-                msg_to_table.append(str[pos+5]);
-                //msg_to_table.append(" ");
-                
-                file_table.close();
-            }*/
+            std::cout << "CRIANDO TABELA DE ROTEAMENTO" << std::endl;
+            file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+            file_table << "1 2 1 2\n";
+            file_table.close();
             
             std::cout << str << std::endl;//mensagem debug
             //TODO
@@ -417,8 +410,7 @@ namespace gr {
             exit(1);
         }else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'B'){
             
-            std::cout << "[MASTER][MESSAGE PARSER]: SLAVE BROADCAST "<<str << std::endl;
-            exit(1);
+            std::cout << "RECEBEU BROADCAST DO SLAVE: IGNORE" << std::endl;
             
         }else{
             //std::cout << "[MASTER][MESSAGE PARSER]: NADA "<<str << std::endl;
