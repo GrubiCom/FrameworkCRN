@@ -18,6 +18,10 @@ echo -----------------------------------------------------------
 sudo apt-get install -y git cmake sdcc guile-2.0-dev ccache python-all-dev python3-all-dev swig libfftw3-dev libfftw3-bin libcppunit-dev libcppunit-1.13-0 libboost-all-dev libgsl0-dev libusb-dev libusb-1.0-0 libusb-1.0-0-dev libasound2-dev python-numpy python-numpy-dbg python3-numpy python-cheetah python-mako python-wxgtk2.8 python-qwt5-qt4 libqwt5-qt4-dev libfontconfig1-dev libxrender-dev libxi-dev libsdl1.2-dev python-scipy python3-scipy python-matplotlib python3-matplotlib doxygen gpsd python-gps gpsd-clients python-pip build-essential libtool libudev-dev libncurses5-dev libncurses5 libncurses5-dbg ncurses-bin cpufrequtils python-docutils qt4-bin-dbg qt4-default libqt4-dev libqt4-dev-bin python-qt4 python-qt4-dbg python-qt4-dev libpulse-dev g++ automake autoconf python-dev fort77 python-opengl python-lxml qt4-dev-tools libqwtplot3d-qt4-dev pyqt4-dev-tools wget gtk2-engines-pixbuf r-base-dev python-tk python-gtk2 libzmq1 libzmq-dev python-requests python-sphinx libcomedi-dev libfann-dev packagekit-gtk3-module gnuplot
 
 sudo pip install -U scikit-learn
+sudo pip install cython==0.25.2
+sudo pip install ipython
+sudo pip install pandas
+sudo python -m pip install hmms
 
 echo -----------------------------------------------------------
 echo ---------------------- Installing UHD ---------------------
