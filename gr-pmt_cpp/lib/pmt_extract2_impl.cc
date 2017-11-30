@@ -379,7 +379,7 @@ namespace gr {
 				sense = false;
 				share = false;
 				
-			} else if(str[pos+1] == 'N'){
+			} else if(str[pos+3] == 'N'){
 				
 				//Descobertas dos vizinhos<N:ID_neighbor>
 
@@ -388,7 +388,7 @@ namespace gr {
 				std::string neighbor_f;
 				std::ifstream file; // open file
 				file.open(filename.c_str());
-				std::string id_neighbor = boost::to_string(str[pos+3]);
+				std::string id_neighbor = boost::to_string(str[pos+5]);
 				bool contained = false;
 				
 				if (file.is_open()){
@@ -410,7 +410,7 @@ namespace gr {
 					
 					if(file1.is_open()){
 						
-						file1 << id_neighbor<< std::endl;
+						file1 << id_neighbor<< std::endl;//coloca o vizinho na lista
 						file1.close();
 					}
 				}       

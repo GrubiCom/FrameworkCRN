@@ -120,7 +120,7 @@ namespace gr {
         }
 
         if((str[pos] =='<') && (str[pos+1] == 'G' || str[pos+1] =='K' || 
-                str[pos+1] == 'N' || str[pos+1] == 's')){//to do parte do k
+                str[pos+1] == 's')){//to do parte do k
             
             std::fstream out; 
             bool descart = false;
@@ -135,6 +135,11 @@ namespace gr {
             std::string filename = "/tmp/Acknowledgement/acks";
             filename.push_back(str[pos+3]);//ID
             int id = str[pos+3] - '0';
+            
+            if(str[pos+3] == 'N' ){//se for N o id fica na pos+5
+                id = str[pos+5] - '0';
+            }
+            
             filename.append(".txt");
             out.open(filename.c_str(),std::ios::in | std::ios::out ); //|std::ios::app
             if(str[pos+1] == 'G' ){
@@ -197,7 +202,7 @@ namespace gr {
                 //received = 0;
             }else if(str[pos+1] == 'N'){
                 //Descobertas dos vizinhos<N:ID_neighbor>
-
+                /*
                 
                 std::fstream file1;
                 std::string filename = "/tmp/neighbors.txt";
@@ -238,7 +243,7 @@ namespace gr {
                     received = 0;
                     sent=0;
                
-                               
+                    */        
             }
             
             if(str[pos+1] == 'G' || str[pos+1] =='K'){
@@ -396,18 +401,170 @@ namespace gr {
             se.close();
         }else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'N'){
             
+            // recebido <0 : N : myID : srcID : hop>
             
-            std::ofstream file_table;
+            std::ofstream out_file_table;
+            std::fstream in_file_table;
             std::string filename_table = "/tmp/routing_table.txt";
-            std::cout << "CRIANDO TABELA DE ROTEAMENTO" << std::endl;
-            file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
-            file_table << "1 2 1 2\n";
-            file_table.close();
+            std::string mensagem_para_tabela; 
+            std::string separador = " ";
             
-            std::cout << str << std::endl;//mensagem debug
+            if(!boost::filesystem::exists("/tmp/routing_table.txt")){
+                
+                std::cout << "CRIANDO TABELA DE ROTEAMENTO" << std::endl;
+                out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+
+                mensagem_para_tabela = str[pos+7]+separador+str[pos+5]+separador+str[pos+9];//Cria msg pra salvar na tabela
+                
+                out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
+                
+                
+                
+            } else {
+                std::cout << "TABELA JA EXISTE" << std::endl;
+                
+                in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                int dest,next,hop;
+                bool atualizar_tabela = false;
+                bool no_encontrado = false;
+                
+                
+                int sourceID = str[pos+7] - '0';//the integer value for any digit is the digit less '0' (or 48).
+                int myID = str[pos+5] - '0';
+                int hop_msg = str[pos+9] - '0';
+                
+                //std::cout << sourceID << myID << hop_msg <<  std::endl;
+      
+                while (in_file_table >> dest >> next >> hop ){//verificar se a informacao do no ja esta na tabela
+                    
+                    if(sourceID == dest){
+                        
+                        if(hop_msg < hop){
+                        
+                            atualizar_tabela = true;
+                            no_encontrado = true;
+                        
+                        } else{
+                        
+                            no_encontrado = true;
+                            break;
+                        }
+                    }
+ 
+                }//end while
+               
+                in_file_table.close();
+                
+                if(atualizar_tabela){
+                    
+                    std::cout << "Atualizar a tabela" << std::endl;
+                    std::string filename_table_temp = "/tmp/routing_table_temp.txt";
+                    in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                    std::ofstream temp_out_file_table;
+                    temp_out_file_table.open(filename_table_temp.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                    std::fstream temp_in_file_table;
+                    
+                    
+                    while(in_file_table >> dest >> next >> hop){//copia as informacoes para a tabela temporaria
+                        
+                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//monta a mensagem
+
+                        temp_out_file_table << mensagem_para_tabela << std::endl;//salva linha na tabela
+                        
+                    }
+                    temp_out_file_table.close();
+                    in_file_table.close();
+                    out_file_table.open(filename_table.c_str(), std::ofstream::out | std::ofstream::trunc);//limpar tabela
+                    out_file_table.close();//fechar tabela depois de limpar
+                    
+                    in_file_table.open(filename_table_temp.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela temporaria para leitura
+                    out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela para escrita
+                    
+                    while(in_file_table >> dest >> next >> hop){//copia as informacoes para a tabela
+                        
+                        if(sourceID == dest){
+                        
+                            if(hop_msg < hop){
+                                
+                                mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop_msg);//monta a mensagem com o menor hop
+                        
+                            } else {
+                                mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//monta a mensagem com o menor hop
+                            }
+                        } else {
+                            mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//copia a mensagem na integra
+                        }
+                        
+                        out_file_table << mensagem_para_tabela << std::endl;//salva linha na tabela
+                        
+                    }
+                    
+                    remove("/tmp/routing_table_temp.txt");//remove tabela temporaria
+                    
+                    out_file_table.close();
+                    in_file_table.close();
+                    
+                }
+                if(!no_encontrado){
+                    //std::cout << "colocar na tabela" << std::endl;
+                    out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                    
+                    mensagem_para_tabela = str[pos+7]+separador+str[pos+5]+separador+str[pos+9];//Cria msg pra salvar na tabela
+                
+                    out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
+                }
+                
+            }//end else
+            
+            out_file_table.close();
+            
+                //PARTE DO N ANTIGO
+            std::fstream file1;
+                std::string filename = "/tmp/neighbors.txt";
+                std::string neighbor_f;
+                std::ifstream file; // open file
+                file.open("/tmp/neighbors.txt");
+                std::string id_neighbor = boost::to_string(str[pos+5]);//pega o ID do vizinho
+                bool contained = false;
+                if(file.is_open()){
+                    while(getline(file,neighbor_f)){
+
+
+                        if(neighbor_f.compare(id_neighbor) == 0){//compara se sao mesmo valor
+                            contained = true;
+                        }
+                    }
+                    file.close();
+                    
+                }
+                if(!contained){
+                    
+
+                    std::cout << "[MASTER][MESSAGE PARSER]: "<<str << std::endl;
+                    file1.open(filename.c_str(), std::ios::in | std::ios::out | std::ios::app); 
+                    if(file1.is_open()){
+                        file1 << id_neighbor<< std::endl;//escreve o id do vizinho no arquivo
+                        file1.close();
+                    }
+                        
+                }
+                std::fstream out; 
+                    out.open("/tmp/number_packet_received.txt", std::ios::out | std::ios::app);
+                    if(out.is_open() && received > 0){
+                        out << received << std::endl;
+                        std::cout << "[MASTER][MESSAGE PARSER]:SALVED TOTAL PACKET RECEIVED "<< std::endl;
+                        out.close();
+                    }
+                    received = 0;
+                    sent=0;
+                //ACABOU PARTE DO N ANTIGO
+
+            
+            //std::cout << str << std::endl;//mensagem debug
             //TODO
-            std::cout << "DEU CERTO" << std::endl;
-            exit(1);
+            //std::cout << "DEU CERTO" << std::endl;
+            //exit(1);
+            
         }else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'B'){
             
             std::cout << "RECEBEU BROADCAST DO SLAVE: IGNORE" << std::endl;

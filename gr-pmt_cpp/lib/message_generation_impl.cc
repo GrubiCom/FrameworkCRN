@@ -111,7 +111,7 @@ namespace gr {
         if (file.is_open()){
             while(getline(file,line)){
                 if(cycle == 0){
-                    d_msg = pmt::intern("<"+line+":2:0.8:5.8>");//CRIA A MSG DE SENSE PARA CADA VIZINHO
+                    d_msg = pmt::intern("<"+line+":2:0.8:1.8>");//CRIA A MSG DE SENSE PARA CADA VIZINHO
                     std::cout << pmt::symbol_to_string(d_msg);
                     message_port_pub( pmt::mp("msg"), d_msg );
                     usleep(200000);
@@ -172,7 +172,7 @@ namespace gr {
                             b = std::system("rm -rf /tmp/Acknowledgement/" );
                             remove("/tmp/neighbors.txt");
                             remove("/tmp/neighbors_aux.txt");
-                            remove("/tmp/master_channels.txt");
+                            //remove("/tmp/master_channels.txt");
                             remove("/tmp/acks_sense.txt");
                             
                             for (int i = 0; i < 10; i++){
