@@ -19,7 +19,7 @@ sudo apt-get install -y git cmake sdcc guile-2.0-dev ccache python-all-dev pytho
 
 sudo pip install -U scikit-learn
 sudo pip install cython==0.25.2
-sudo pip install ipython
+sudo apt-get -y install ipython ipython-notebook
 sudo pip install pandas
 sudo python -m pip install hmms
 
