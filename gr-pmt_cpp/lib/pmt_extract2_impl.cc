@@ -167,7 +167,7 @@ namespace gr {
                                         int time_2 = std::rand()% 400000 + 100000;
 					usleep(time_2);
                                         
-                                        //Primeiro hop <0:B:ID:1>
+                                        //Primeiro hop <0:B:srcID:1>
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
 					//for (int i = 0; i < 5; i++){
                                         //    usleep(200000);
@@ -343,7 +343,13 @@ namespace gr {
 					se.open(filename1.c_str(), std::ios::out | std::ios::app);
 					se << sent1<< std::endl;
 					se.close();
-				}
+                                        
+				} else if(str[pos+3] == 'B' && str[pos+5] != idUsrp){
+                                    
+                                    std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<< str << std::endl;
+                                    std::cout << "[SLAVE][MESSAGE PARSER]: DEU CERTO "<< std::endl;
+                                    exit(1);
+                                }
 				
 			} else if (str[pos] =='<' && str[pos+1] == 'A' && str[pos+3] == idUsrp){
                
@@ -417,10 +423,6 @@ namespace gr {
 						file1.close();
 					}
 				}       
-				
-			} else if (str[pos+1] == '0' && str[pos+3] == 'N'){//modificar esse if para o slave broadcast
-				
-				//std::cout << "[SLAVE][MESSAGE PARSER]: Pacote nao destinado a usrp de ID: "<<idUsrp << std::endl;
 				
 			} else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'B'){
             
