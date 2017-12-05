@@ -169,7 +169,10 @@ namespace gr {
                                         
                                         //Primeiro hop <0:B:ID:1>
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
-					
+					//for (int i = 0; i < 5; i++){
+                                        //    usleep(200000);
+                                        //    message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
+                                        //}
 					// sense = false;
 					
 				} else if (str[pos+3] == '1'){		// Comunicação de quem é o master //3
@@ -421,7 +424,8 @@ namespace gr {
 				
 			} else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'B'){
             
-                                std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<<str << std::endl;
+                                std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<< str << std::endl;
+                                std::cout << "[SLAVE][MESSAGE PARSER]: DEU CERTO "<< std::endl;
                                 exit(1);
             
                         } 

@@ -570,7 +570,7 @@ namespace gr {
             std::cout << "RECEBEU BROADCAST DO SLAVE: IGNORE" << std::endl;
             
         }else{
-            //std::cout << "[MASTER][MESSAGE PARSER]: NADA "<<str << std::endl;
+            std::cout << "[MASTER][MESSAGE PARSER]: NADA "<< str << std::endl;
         }
         for (int i = 0; i < 50; i++) str[i] = 0;
         

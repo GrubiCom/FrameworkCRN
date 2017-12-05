@@ -60,7 +60,7 @@ namespace gr {
 	message_port_register_out(pmt::mp("msg"));
         message_port_register_out(pmt::mp("mp"));
         message_port_register_in(pmt::mp("signal"));
-        gain = 50;
+        //gain = 50;
         
 	d_thread = new boost::thread(boost::bind(&message_generation_impl::run, this, this));
         set_msg_handler(pmt::mp("signal"), 
@@ -192,9 +192,9 @@ namespace gr {
                             }else {
 				    
                                 std::cout << "[MASTER][MESSAGE GENERATION]: Repeat Send Neighbors Discovery with gain: "<<gain << std::endl;
-                                if (gain < 58){
-                                    gain+=1;
-                                }
+                                //if (gain < 58){
+                                //    gain+=1;
+                                //}
                                 //message_port_pub(pmt::mp("mp"), pmt::cons(pmt::mp("gain"),pmt::mp(gain)));
                                 std::cout << "[MASTER][MESSAGE GENERATION]: tuned CCC 6GHz" << std::endl;
                                 message_port_pub(pmt::mp("mp"), pmt::cons(pmt::mp("freq"),pmt::mp(6000000000)));
