@@ -356,6 +356,7 @@ namespace gr {
                                     
                                     int sourceID = str[pos+5] - '0';//the integer value for any digit is the digit less '0' (or 48).
                                     int hop_msg = str[pos+7] - '0';
+                                    
 
                                     if(!boost::filesystem::exists("/tmp/routing_table.txt")){
 
@@ -364,7 +365,7 @@ namespace gr {
                                         
                                         hop_msg++;
                                         
-                                        char hop_char = hop_msg + '0';
+                                        char hop_char = hop_msg + '0';//hop no tipo char para colocar na tabela
                                         
                                         mensagem_para_tabela_com_master = master_id+separador+str[pos+5]+separador+hop_char;
                                                 
@@ -375,11 +376,9 @@ namespace gr {
                                         out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
                                         
 
-
-
                                     } else {
                                         std::cout << "TABELA JA EXISTE" << std::endl;
-                                        /*
+                                        
                                         in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
                                         int dest,next,hop;
                                         bool atualizar_tabela = false;
@@ -460,12 +459,16 @@ namespace gr {
                                         if(!no_encontrado){
                                             //std::cout << "colocar na tabela" << std::endl;
                                             out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                            
+                                            hop_msg++;
+                                            
+                                            char hop_char = hop_msg + '0';//hop no tipo char para colocar na tabela
 
-                                            mensagem_para_tabela = str[pos+7]+separador+str[pos+5]+separador+str[pos+9];//Cria msg pra salvar na tabela
+                                            mensagem_para_tabela = str[pos+5]+separador+str[pos+5]+separador+hop_char;//Cria msg pra salvar na tabela
 
                                             out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
                                         }
-                                    */
+                                    
                                     }//end else
 
                                     out_file_table.close();
