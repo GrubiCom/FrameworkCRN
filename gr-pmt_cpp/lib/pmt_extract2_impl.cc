@@ -454,6 +454,7 @@ namespace gr {
                                         
 				} else if(str[pos+3] == 'B' && str[pos+5] != idUsrp){//SLAVE BROADCAST <0:B:srcID:hop>
                                     
+                                    //inicio da criacao da tabela de roteamento
                                     std::ofstream out_file_table;
                                     std::fstream in_file_table;
                                     std::string filename_table = "/tmp/routing_table.txt";
@@ -464,6 +465,7 @@ namespace gr {
                                     
                                     int sourceID = str[pos+5] - '0';//the integer value for any digit is the digit less '0' (or 48).
                                     int hop_msg = str[pos+7] - '0';
+                                    bool hop_incrementado = false;
                                     
 
                                     if(!boost::filesystem::exists("/tmp/routing_table.txt")){
@@ -472,6 +474,7 @@ namespace gr {
                                         out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
                                         
                                         hop_msg++;
+                                        hop_incrementado = true;
                                         
                                         char hop_char = hop_msg + '0';//hop no tipo char para colocar na tabela
                                         
@@ -569,6 +572,7 @@ namespace gr {
                                             out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
                                             
                                             hop_msg++;
+                                            hop_incrementado = true;
                                             
                                             char hop_char = hop_msg + '0';//hop no tipo char para colocar na tabela
 
@@ -581,9 +585,25 @@ namespace gr {
 
                                     out_file_table.close();
                                     
+                                    //fim da criacao da tabela de roteamento
+                                    
+                                    //inicio da resposta
+                                    
+                                    if(!hop_incrementado){
+                                        hop_msg++;
+                                    }
+                                    char hop_char = hop_msg + '0';//hop no tipo char para colocar na tabela
+                                    
+                                    for (int i = 0; i < 5; i++){
+                                        usleep(200000);
+                                        message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+boost::to_string(idUsrp)+":"+hop_char+">"));//resposta broadcast vizinhos
+                                    }
+                                    //fim da resposta
                                     std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<< str << std::endl;
                                     std::cout << "[SLAVE][MESSAGE PARSER]: DEU CERTO "<< std::endl;
                                     exit(1);
+                                } else if(str[pos+3] == 'N' && str[pos+5] != idUsrp){//SLAVE BROADCAST <0:B:srcID:hop>
+                                    //TODO
                                 }
 				
 			} else if (str[pos] =='<' && str[pos+1] == 'A' && str[pos+3] == idUsrp){
@@ -659,14 +679,7 @@ namespace gr {
 					}
 				}       
 				
-			} else if ((str[pos] =='<') && (str[pos+1] =='0') && str[pos+3] == 'B'){
-            
-                                std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<< str << std::endl;
-                                std::cout << "[SLAVE][MESSAGE PARSER]: DEU CERTO "<< std::endl;
-                                exit(1);
-            
-                        } 
-                        else {
+			} else {
 				
 				//str = NULL; std::free(str);
 				std::cout << "[SLAVE][MESSAGE PARSER]: Lixo" << std::endl;
