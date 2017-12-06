@@ -145,7 +145,7 @@ namespace gr {
 				//std::cout <<"Info: "<<str<< std::endl;
 				if(str[pos+3] == '0'){ //step <0:0> Broadcast:ID_MSG
 					
-					std::cout<< "[SLAVE][MESSAGE PARSER]:Discovery of neighbors " << "<N:"<<boost::to_string(idUsrp)<<">"<< std::endl;
+					std::cout<< "[SLAVE][MESSAGE PARSER]:Discovery of neighbors " << "<0:N:"<<boost::to_string(idUsrp)<<">"<< std::endl;
 					std::fstream out; 
 					out.open("/tmp/number_packet_received.txt", std::ios::out | std::ios::app);
                     
@@ -159,20 +159,20 @@ namespace gr {
 					packet_received = 0;
 					srand (time(NULL));
 					
-					int time = std::rand()% 400000 + 100000;
+					int time = std::rand()% 500000 + 200000;
 					usleep(time);
                                         //Primeira resposta <0 : N : myID : srcID : hop>
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+boost::to_string(idUsrp)+":1>"));//resposta para o master
                                         
-                                        int time_2 = std::rand()% 400000 + 100000;
+                                        int time_2 = std::rand()% 500000 + 200000;
 					usleep(time_2);
                                         
                                         //Primeiro hop <0:B:srcID:1>
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
-					//for (int i = 0; i < 5; i++){
-                                        //    usleep(200000);
-                                        //    message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
-                                        //}
+					for (int i = 0; i < 5; i++){
+                                            usleep(200000);
+                                            message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
+                                        }
 					// sense = false;
 					
 				} else if (str[pos+3] == '1'){		// Comunicação de quem é o master //3
@@ -344,7 +344,132 @@ namespace gr {
 					se << sent1<< std::endl;
 					se.close();
                                         
-				} else if(str[pos+3] == 'B' && str[pos+5] != idUsrp){
+				} else if(str[pos+3] == 'B' && str[pos+5] != idUsrp){//SLAVE BROADCAST <0:B:srcID:hop>
+                                    
+                                    std::ofstream out_file_table;
+                                    std::fstream in_file_table;
+                                    std::string filename_table = "/tmp/routing_table.txt";
+                                    std::string mensagem_para_tabela;
+                                    std::string mensagem_para_tabela_com_master;
+                                    std::string separador = " ";
+                                    std::string master_id = "0";
+                                    
+                                    int sourceID = str[pos+5] - '0';//the integer value for any digit is the digit less '0' (or 48).
+                                    int hop_msg = str[pos+7] - '0';
+
+                                    if(!boost::filesystem::exists("/tmp/routing_table.txt")){
+
+                                        std::cout << "CRIANDO TABELA DE ROTEAMENTO" << std::endl;
+                                        out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                        
+                                        hop_msg++;
+                                        
+                                        char hop_char = hop_msg + '0';
+                                        
+                                        mensagem_para_tabela_com_master = master_id+separador+str[pos+5]+separador+hop_char;
+                                                
+                                        mensagem_para_tabela = str[pos+7]+separador+str[pos+5]+separador+str[pos+9];//Cria msg pra salvar na tabela
+
+                                        out_file_table << mensagem_para_tabela_com_master << std::endl;//salva na tabela
+                                        
+                                        out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
+                                        
+                                        exit(1);
+
+
+
+                                    } else {
+                                        std::cout << "TABELA JA EXISTE" << std::endl;
+
+                                        in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                        int dest,next,hop;
+                                        bool atualizar_tabela = false;
+                                        bool no_encontrado = false;                          
+
+                                        //std::cout << sourceID << myID << hop_msg <<  std::endl;
+
+                                        while (in_file_table >> dest >> next >> hop ){//verificar se a informacao do no ja esta na tabela
+
+                                            if(sourceID == dest){
+
+                                                if(hop_msg < hop){
+
+                                                    atualizar_tabela = true;
+                                                    no_encontrado = true;
+
+                                                } else{
+
+                                                    no_encontrado = true;
+                                                    break;
+                                                }
+                                            }
+
+                                        }//end while
+
+                                        in_file_table.close();
+
+                                        if(atualizar_tabela){
+
+                                            std::cout << "Atualizar a tabela" << std::endl;
+                                            std::string filename_table_temp = "/tmp/routing_table_temp.txt";
+                                            in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                            std::ofstream temp_out_file_table;
+                                            temp_out_file_table.open(filename_table_temp.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                            std::fstream temp_in_file_table;
+
+
+                                            while(in_file_table >> dest >> next >> hop){//copia as informacoes para a tabela temporaria
+
+                                                mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//monta a mensagem
+
+                                                temp_out_file_table << mensagem_para_tabela << std::endl;//salva linha na tabela
+
+                                            }
+                                            temp_out_file_table.close();
+                                            in_file_table.close();
+                                            out_file_table.open(filename_table.c_str(), std::ofstream::out | std::ofstream::trunc);//limpar tabela
+                                            out_file_table.close();//fechar tabela depois de limpar
+
+                                            in_file_table.open(filename_table_temp.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela temporaria para leitura
+                                            out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela para escrita
+
+                                            while(in_file_table >> dest >> next >> hop){//copia as informacoes para a tabela
+
+                                                if(sourceID == dest){
+
+                                                    if(hop_msg < hop){
+
+                                                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop_msg);//monta a mensagem com o menor hop
+
+                                                    } else {
+                                                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//monta a mensagem com o menor hop
+                                                    }
+                                                } else {
+                                                    mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//copia a mensagem na integra
+                                                }
+
+                                                out_file_table << mensagem_para_tabela << std::endl;//salva linha na tabela
+
+                                            }
+
+                                            remove("/tmp/routing_table_temp.txt");//remove tabela temporaria
+
+                                            out_file_table.close();
+                                            in_file_table.close();
+
+                                        }
+                                        if(!no_encontrado){
+                                            //std::cout << "colocar na tabela" << std::endl;
+                                            out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+
+                                            mensagem_para_tabela = str[pos+7]+separador+str[pos+5]+separador+str[pos+9];//Cria msg pra salvar na tabela
+
+                                            out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
+                                        }
+
+                                    }//end else
+
+                                    out_file_table.close();
                                     
                                     std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<< str << std::endl;
                                     std::cout << "[SLAVE][MESSAGE PARSER]: DEU CERTO "<< std::endl;
