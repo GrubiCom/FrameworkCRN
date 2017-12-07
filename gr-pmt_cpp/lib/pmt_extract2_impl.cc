@@ -277,10 +277,7 @@ namespace gr {
 
                                     //Primeiro hop <0:B:srcID:1>
                                     message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
-                                    for (int i = 0; i < 5; i++){
-                                        usleep(200000);
-                                        message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
-                                    }
+                                    
                                     // sense = false;
 					
 				} else if (str[pos+3] == '1'){		// Comunicação de quem é o master //3
@@ -296,7 +293,7 @@ namespace gr {
 					std::cout << "[SLAVE][MESSAGE PARSER]:SENSE" << std::endl;
 					
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<s:"+boost::to_string(idUsrp)+">"));//linha nova
-					usleep(1000000);
+					usleep(2000000);
 					message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<s:"+boost::to_string(idUsrp)+">"));//linha nova
 					// remove("/tmp/ack");
 					// remove("/tmp/sense.txt");
@@ -498,6 +495,8 @@ namespace gr {
                                         //std::cout << sourceID << myID << hop_msg <<  std::endl;
 
                                         while (in_file_table >> dest >> next >> hop ){//verificar se a informacao do no ja esta na tabela
+                                            
+                                            //TODO verificar se o master possui menor hop
 
                                             if(sourceID == dest){//se o no se encontra na tabela
 
@@ -571,12 +570,12 @@ namespace gr {
                                             //std::cout << "colocar na tabela" << std::endl;
                                             out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
                                             
-                                            hop_msg++;
-                                            hop_incrementado = true;
+                                            //hop_msg++;
+                                            //hop_incrementado = true;
                                             
                                             char hop_char = hop_msg + '0';//hop no tipo char para colocar na tabela
 
-                                            mensagem_para_tabela = str[pos+5]+separador+str[pos+5]+separador+hop_char;//Cria msg pra salvar na tabela
+                                            mensagem_para_tabela = str[pos+5]+separador+str[pos+5]+separador+"1";//Cria msg pra salvar na tabela
 
                                             out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
                                         }
@@ -601,10 +600,137 @@ namespace gr {
                                     //fim da resposta
                                     std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<< str << std::endl;
                                     std::cout << "[SLAVE][MESSAGE PARSER]: DEU CERTO "<< std::endl;
-                                    exit(1);
-                                } else if(str[pos+3] == 'N' && str[pos+5] != idUsrp){//SLAVE BROADCAST <0:B:srcID:hop>
-                                    //TODO
-                                }
+                                    //exit(1);
+                                } else if(str[pos+3] == 'N' && str[pos+5] != idUsrp){//RESPOSTA SLAVE BROADCAST<0:N:srcID:myID:hop>
+                                    
+                                    
+                                    if(!boost::filesystem::exists("/tmp/routing_table.txt")){
+                                        
+                                        std::cout << "[SLAVE][MESSAGE PARSER]: MENSAGEM DE N ANTES DA MENSAGEM DE B "<< str << std::endl;
+                                    
+                                    } else {
+                                        
+                                        std::ofstream out_file_table;
+                                        std::fstream in_file_table;
+                                        std::string filename_table = "/tmp/routing_table.txt";
+                                        std::string mensagem_para_tabela; 
+                                        std::string separador = " ";
+
+                                        in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                        int dest,next,hop;
+                                        bool atualizar_tabela = false;
+                                        bool no_encontrado = false;
+
+
+                                        int sourceID = str[pos+7] - '0';//the integer value for any digit is the digit less '0' (or 48).
+                                        int myID = str[pos+5] - '0';
+                                        int hop_msg = str[pos+9] - '0';
+
+                                        //std::cout << myID << sourceID << hop_msg <<  std::endl;
+
+                                        while (in_file_table >> dest >> next >> hop ){//verificar se a informacao do no ja esta na tabela
+
+                                            if(sourceID == dest){
+
+                                                if(hop_msg < hop){
+
+                                                    atualizar_tabela = true;
+                                                    no_encontrado = true;
+
+                                                } else{
+
+                                                    no_encontrado = true;
+                                                    break;
+                                                }
+                                            }
+
+                                        }//end while
+
+                                        in_file_table.close();
+
+                                        if(atualizar_tabela){
+
+                                            std::cout << "Atualizar a tabela" << std::endl;
+                                            std::string filename_table_temp = "/tmp/routing_table_temp.txt";
+                                            in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                            std::ofstream temp_out_file_table;
+                                            temp_out_file_table.open(filename_table_temp.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                            std::fstream temp_in_file_table;
+
+
+                                            while(in_file_table >> dest >> next >> hop){//copia as informacoes para a tabela temporaria
+
+                                                mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//monta a mensagem
+
+                                                temp_out_file_table << mensagem_para_tabela << std::endl;//salva linha na tabela
+
+                                            }
+                                            temp_out_file_table.close();
+                                            in_file_table.close();
+                                            out_file_table.open(filename_table.c_str(), std::ofstream::out | std::ofstream::trunc);//limpar tabela
+                                            out_file_table.close();//fechar tabela depois de limpar
+
+                                            in_file_table.open(filename_table_temp.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela temporaria para leitura
+                                            out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela para escrita
+
+                                            while(in_file_table >> dest >> next >> hop){//copia as informacoes para a tabela
+
+                                                if(sourceID == dest){
+
+                                                    if(hop_msg < hop){
+
+                                                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop_msg);//monta a mensagem com o menor hop
+
+                                                    } else {
+                                                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//monta a mensagem com o menor hop
+                                                    }
+                                                } else {
+                                                    mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//copia a mensagem na integra
+                                                }
+
+                                                out_file_table << mensagem_para_tabela << std::endl;//salva linha na tabela
+
+                                            }
+
+                                            remove("/tmp/routing_table_temp.txt");//remove tabela temporaria
+
+                                            out_file_table.close();
+                                            in_file_table.close();
+
+                                        }
+                                        if(!no_encontrado){
+                                            //std::cout << "colocar na tabela" << std::endl;
+                                            out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                            in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela temporaria para leitura
+                                            
+                                            int hop_para_master;
+                                            while(in_file_table >> dest >> next >> hop){
+                                                
+                                                if(dest == 0){
+                                                    hop_para_master = hop_msg - hop;
+                                                }
+                                                
+                                            }//end while
+
+                                            mensagem_para_tabela = str[pos+7]+separador+str[pos+5]+separador+boost::to_string(hop_para_master);//Cria msg pra salvar na tabela
+
+                                            out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
+                                            
+                                        }//end if
+                                        
+                                        out_file_table.close();
+                                        in_file_table.close();
+                                        
+                                        
+                                        message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+str[pos+7]+":"+str[pos+9]+">"));//resposta para o master
+                                        
+                                        std::cout << "[SLAVE][MESSAGE PARSER]: ENCAMINHEI A RESPOSTA "<< str << std::endl;
+                                        exit(1); 
+
+                                    }//end else
+
+                                    
+                                }//end else if
 				
 			} else if (str[pos] =='<' && str[pos+1] == 'A' && str[pos+3] == idUsrp){
                
