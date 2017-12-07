@@ -122,7 +122,7 @@ namespace gr {
 				}
 			}
 			
-			char idUsrp = '4';
+			char idUsrp = '5';
 			size_t idMaster = -1;
 			char* pEnd;
 			double fMax, fMim, nChannel;
@@ -277,7 +277,10 @@ namespace gr {
 
                                     //Primeiro hop <0:B:srcID:1>
                                     message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
-                                    
+                                    for (int i = 0; i < 5; i++){
+                                        usleep(200000);
+                                        message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
+                                    }
                                     // sense = false;
 					
 				} else if (str[pos+3] == '1'){		// Comunicação de quem é o master //3
@@ -721,10 +724,11 @@ namespace gr {
                                         out_file_table.close();
                                         in_file_table.close();
                                         
-                                        
-                                        message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+str[pos+7]+":"+str[pos+9]+">"));//resposta para o master
-                                        
-                                        std::cout << "[SLAVE][MESSAGE PARSER]: ENCAMINHEI A RESPOSTA "<< str << std::endl;
+                                        for (int i = 0; i < 5; i++){
+                                            usleep(100000);
+                                            message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+str[pos+7]+":"+str[pos+9]+">"));//resposta para o master
+                                        }
+                                        std::cout << "[SLAVE][MESSAGE PARSER]: ENCAMINHEI A MENSAGEM "<< str << std::endl;
                                         exit(1); 
 
                                     }//end else
