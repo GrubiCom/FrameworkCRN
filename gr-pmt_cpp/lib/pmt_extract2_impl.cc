@@ -145,7 +145,7 @@ namespace gr {
 				//std::cout <<"Info: "<<str<< std::endl;
 				if(str[pos+3] == '0'){ //step <0:0> Broadcast:ID_MSG
 					
-					std::cout<< "[SLAVE][MESSAGE PARSER]:Discovery of neighbors " << "<0:N:"<<boost::to_string(idUsrp)<<">"<< std::endl;
+					std::cout<< "[SLAVE][MESSAGE PARSER]:Discovery of neighbors " << "<0:N:"<<boost::to_string(idUsrp)<<":>"<<boost::to_string(idUsrp)<<":1>"<< std::endl;
 					std::fstream out; 
 					out.open("/tmp/number_packet_received.txt", std::ios::out | std::ios::app);
                     
@@ -269,20 +269,17 @@ namespace gr {
 
                                     int time = std::rand()% 500000 + 200000;
                                     usleep(time);
+                                    //Primeiro hop <0:B:srcID:1>
+                                    message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
+                                    
+                                    int time_2 = std::rand()% 500000 + 200000;
+                                    usleep(time_2);
                                     //Primeira resposta <0 : N : myID : srcID : hop>
                                     message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+boost::to_string(idUsrp)+":1>"));//resposta para o master
 
-                                    int time_2 = std::rand()% 500000 + 200000;
-                                    usleep(time_2);
-
-                                    //Primeiro hop <0:B:srcID:1>
-                                    message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
-                                    for (int i = 0; i < 5; i++){
-                                        usleep(200000);
-                                        message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:B:"+boost::to_string(idUsrp)+":1>"));//broadcast vizinhos
-                                    }
-                                    // sense = false;
-					
+                                    
+                                   
+                                    
 				} else if (str[pos+3] == '1'){		// Comunicação de quem é o master //3
 					
 					std::cout << "[SLAVE][MESSAGE PARSER]:MASTER" << std::endl; //TALVEZ COMENTAR ESSE BLOCO
@@ -480,7 +477,7 @@ namespace gr {
                                         
                                         mensagem_para_tabela_com_master = master_id+separador+str[pos+5]+separador+hop_char;
                                                 
-                                        mensagem_para_tabela = str[pos+5]+separador+str[pos+5]+separador+"1";//Cria msg pra salvar na tabela
+                                        mensagem_para_tabela = str[pos+5]+separador+str[pos+5]+separador+"1";//Cria msg pra salvar na tabela o no vizinho
 
                                         out_file_table << mensagem_para_tabela_com_master << std::endl;//salva na tabela
                                         
@@ -507,6 +504,7 @@ namespace gr {
 
                                                     atualizar_tabela = true;
                                                     no_encontrado = true;
+                                                    break;
 
                                                 } else{
 
@@ -591,18 +589,37 @@ namespace gr {
                                     
                                     //inicio da resposta
                                     
+                                    int dest,next,hop;
+                                    bool transmite = true;
+                                    
                                     if(!hop_incrementado){
                                         hop_msg++;
                                     }
                                     char hop_char = hop_msg + '0';//hop no tipo char para colocar na tabela
                                     
-                                    for (int i = 0; i < 5; i++){
-                                        usleep(200000);
+                                    while(in_file_table >> dest >> next >> hop){
+                                                
+                                        if(dest == 0){
+                                            
+                                            if(hop < hop_msg){
+                                                transmite = false;
+                                                
+                                            }
+                                        }
+                                                
+                                    }//end while
+                                    
+                                    //for (int i = 0; i < 5; i++){
+                                        //usleep(200000);
+                                    
+                                    if(transmite){
                                         message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+boost::to_string(idUsrp)+":"+hop_char+">"));//resposta broadcast vizinhos
                                     }
+                                        
+                                    //}
                                     //fim da resposta
-                                    std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST "<< str << std::endl;
-                                    std::cout << "[SLAVE][MESSAGE PARSER]: DEU CERTO "<< std::endl;
+                                    std::cout << "[SLAVE][MESSAGE PARSER]: RESPONSE SLAVE BROADCAST DA MENSAGEM "<< str << std::endl;
+                                    //std::cout << "[SLAVE][MESSAGE PARSER]: DEU CERTO "<< std::endl;
                                     //exit(1);
                                 } else if(str[pos+3] == 'N' && str[pos+5] != idUsrp){//RESPOSTA SLAVE BROADCAST<0:N:srcID:myID:hop>
                                     
@@ -706,16 +723,16 @@ namespace gr {
                                             out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
                                             in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela temporaria para leitura
                                             
-                                            int hop_para_master;
+                                            int hop_para_node_vizinho;
                                             while(in_file_table >> dest >> next >> hop){
                                                 
                                                 if(dest == 0){
-                                                    hop_para_master = hop_msg - hop;
+                                                    hop_para_node_vizinho = hop_msg - hop;//calcula os hops para o node que mandou a msg baseado no master
                                                 }
                                                 
                                             }//end while
 
-                                            mensagem_para_tabela = str[pos+7]+separador+str[pos+5]+separador+boost::to_string(hop_para_master);//Cria msg pra salvar na tabela
+                                            mensagem_para_tabela = str[pos+7]+separador+str[pos+5]+separador+boost::to_string(hop_para_node_vizinho);//Cria msg pra salvar na tabela
 
                                             out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
                                             
@@ -724,10 +741,19 @@ namespace gr {
                                         out_file_table.close();
                                         in_file_table.close();
                                         
-                                        for (int i = 0; i < 5; i++){
-                                            usleep(100000);
-                                            message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+str[pos+7]+":"+str[pos+9]+">"));//resposta para o master
+                                        bool transmite = true;
+                                        
+                                        if(str[pos+7] == idUsrp){
+                                            transmite =  false;
                                         }
+                                        
+                                        //for (int i = 0; i < 5; i++){
+                                            //usleep(100000);
+                                            if(transmite){
+                                                message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+str[pos+7]+":"+str[pos+9]+">"));//resposta para o no proximo do master
+                                            }
+                                            
+                                        //}
                                         std::cout << "[SLAVE][MESSAGE PARSER]: ENCAMINHEI A MENSAGEM "<< str << std::endl;
                                         exit(1); 
 

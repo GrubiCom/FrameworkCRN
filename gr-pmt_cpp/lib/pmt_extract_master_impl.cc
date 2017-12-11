@@ -443,6 +443,7 @@ namespace gr {
                         
                             atualizar_tabela = true;
                             no_encontrado = true;
+                            break;
                         
                         } else{
                         
