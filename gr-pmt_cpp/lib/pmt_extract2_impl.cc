@@ -122,7 +122,7 @@ namespace gr {
 				}
 			}
 			
-			char idUsrp = '5';
+			char idUsrp = '1';
 			size_t idMaster = -1;
 			char* pEnd;
 			double fMax, fMim, nChannel;
@@ -718,7 +718,7 @@ namespace gr {
                                             in_file_table.close();
 
                                         }
-                                        if(!no_encontrado){
+                                        if(!no_encontrado && str[pos+7] != idUsrp){
                                             //std::cout << "colocar na tabela" << std::endl;
                                             out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
                                             in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);//abre tabela temporaria para leitura
@@ -755,7 +755,7 @@ namespace gr {
                                             
                                         //}
                                         std::cout << "[SLAVE][MESSAGE PARSER]: ENCAMINHEI A MENSAGEM "<< str << std::endl;
-                                        exit(1); 
+                                        //exit(1); 
 
                                     }//end else
 
