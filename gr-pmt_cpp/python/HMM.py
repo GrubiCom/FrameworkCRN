@@ -87,11 +87,12 @@ class HMM(gr.basic_block):
                         frequency = ''.join(freq)
                         fPower = ''.join(power)
                         hours = ''.join(hour)
-                except:
-                        print ""
-                arrayhour = hours.split()#put the elements into an array
-                arrayFreq = frequency.split()
-                arrayPower = fPower.split()
+                    arrayhour = hours.split()#put the elements into an array
+                    arrayFreq = frequency.split()
+                    arrayPower = fPower.split()
+                except OSError as e:
+                    print e
+                
                 matrix = []
 
                 for i in range(len(arrayhour)):#create a 2d array from 2 1d array
@@ -15161,9 +15162,9 @@ class HMM(gr.basic_block):
                 for i in range(len(arrayTemp)):
                         max_col_in_row_i = np.argmax(arrayTemp[i,:])#get the best probability index in the array
                         #max_col_in_row_i = np.argmin(arrayTemp[i,:])#get the best probability index in the array
-
+           
                 result = arrayTemp[max_col_in_row_i,1] #the frequency of the best probability
-                
+                          
                 finalMessage = ['<', '0', ':', '3', ':']
                 finalMessage.append(str(result))
                 finalMessage.append('>')    

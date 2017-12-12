@@ -55,33 +55,37 @@ class RandomForest(gr.basic_block):
             power = []
             bestPower = -0.5
             try:
-                while(i < len(self.s)):#run thru the whole list
-                    while(self.s[i] != ':'):#get the hour
-                        hour.append(self.s[i])
+                try:
+                    while(i < len(self.s)):#run thru the whole list
+                        while(self.s[i] != ':'):#get the hour
+                            hour.append(self.s[i])
+                            i = i + 1
+                        hour.append(' ')    
                         i = i + 1
-                    hour.append(' ')    
-                    i = i + 1
 
-                    while(self.s[i] != ':'):#get the frequency
-                        freq.append(self.s[i])
+                        while(self.s[i] != ':'):#get the frequency
+                            freq.append(self.s[i])
+                            i = i + 1
+                        freq.append(' ')
+                        i = i + 2
+
+                        while(self.s[i] != ';'):#get the power
+                            power.append(self.s[i])
+                            i = i + 1
                         i = i + 1
-                    freq.append(' ')
-                    i = i + 2
+                        power.append(' ')
 
-                    while(self.s[i] != ';'):#get the power
-                        power.append(self.s[i])
-                        i = i + 1
-                    i = i + 1
-                    power.append(' ')
+                        frequency = ''.join(freq)
 
-                    frequency = ''.join(freq)
+                        fPower = ''.join(power)
 
-                    fPower = ''.join(power)
-
-                    hours = ''.join(hour)
-                arrayhour = hours.split()#put the elements into an array
-                arrayFreq = frequency.split()
-                arrayPower = fPower.split()
+                        hours = ''.join(hour)
+                    arrayhour = hours.split()#put the elements into an array
+                    arrayFreq = frequency.split()
+                    arrayPower = fPower.split()
+                except OSError as e:
+                    print e
+                    
                 matrix = []
                 for i in range(len(arrayhour)):#create a 2d array from 2 1d array
                     matrix.append([arrayhour[i], arrayFreq[i]])
@@ -95,7 +99,7 @@ class RandomForest(gr.basic_block):
                     floatSamples[i][0] = int(floatSamples[i][0])
                     floatSamples[i][2] = int(floatSamples[i][2])
 
-                clf = joblib.load("/home/fileconfig.forest")#get random forest configuration
+                clf = joblib.load("/opt/FrameworkCRN/fileconfig.forest")#get random forest configuration
                 predicted = clf.predict(floatSamples)#do the predictions
 
                 m = max(predicted)#find the best result

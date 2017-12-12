@@ -145,7 +145,7 @@ namespace gr {
 				//std::cout <<"Info: "<<str<< std::endl;
 				if(str[pos+3] == '0'){ //step <0:0> Broadcast:ID_MSG
 					
-					std::cout<< "[SLAVE][MESSAGE PARSER]:Discovery of neighbors " << "<0:N:"<<boost::to_string(idUsrp)<<":>"<<boost::to_string(idUsrp)<<":1>"<< std::endl;
+					std::cout<< "[SLAVE][MESSAGE PARSER]:Discovery of neighbors " << "<0:N:"<<boost::to_string(idUsrp)<<":"<<boost::to_string(idUsrp)<<":1>"<< std::endl;
 					std::fstream out; 
 					out.open("/tmp/number_packet_received.txt", std::ios::out | std::ios::app);
                     
@@ -754,6 +754,38 @@ namespace gr {
                                             }
                                             
                                         //}
+                                        
+                                        std::fstream file1;
+                                        std::string filename = "/tmp/neighbors_slave.txt";
+                                        std::string neighbor_f;
+                                        std::ifstream file; // open file
+                                        file.open(filename.c_str());
+                                        std::string id_neighbor = boost::to_string(str[pos+5]);
+                                        bool contained = false;
+
+                                        if (file.is_open()){
+
+                                                while (getline(file,neighbor_f)){
+
+                                                        if(neighbor_f.compare(id_neighbor) == 0 ){//verifica existencia de vizinho no arquivo
+                                                                contained = true;
+                                                        }
+                                                }
+
+                                                file.close();
+                                        }
+
+                                        if (!contained  && (id_neighbor.compare(boost::to_string(idUsrp))!= 0)){
+
+                                                //std::cout << "[SLAVE][MESSAGE PARSER]: Saved "<<str << std::endl;
+                                                file1.open(filename.c_str(), std::ios::in | std::ios::out | std::ios::app); 
+
+                                                if(file1.is_open()){
+
+                                                        file1 << id_neighbor<< std::endl;//coloca o vizinho na lista
+                                                        file1.close();
+                                                }
+                                        } 
                                         std::cout << "[SLAVE][MESSAGE PARSER]: ENCAMINHEI A MENSAGEM "<< str << std::endl;
                                         //exit(1); 
 
@@ -767,7 +799,7 @@ namespace gr {
 				std::string st(str); 
 				std::size_t pos = st.find_last_of(":");
 				std::size_t terminal = st.find_last_of(">");
-				std::string::size_type sz;//TALVEZ COMENTAR
+				std::string::size_type sz;//TALVEZ COMENTAR;
 				int bla = std::atoi(st.substr(pos+1,terminal).c_str());
 				
 				int a = bla;
