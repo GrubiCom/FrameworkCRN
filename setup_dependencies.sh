@@ -21,6 +21,8 @@ sudo pip install -U scikit-learn
 sudo pip install cython==0.25.2
 sudo apt-get -y install ipython ipython-notebook
 sudo pip install pandas
+sudo pip install --upgrade scipy
+sudo pip install -U pytest
 sudo python -m pip install hmms
 
 echo -----------------------------------------------------------
