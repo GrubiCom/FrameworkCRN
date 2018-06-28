@@ -122,7 +122,7 @@ namespace gr {
 				}
 			}
 			
-			char idUsrp = '1';
+			char idUsrp = '4';
 			size_t idMaster = -1;
 			char* pEnd;
 			double fMax, fMim, nChannel;
@@ -494,13 +494,13 @@ namespace gr {
 
                                         //std::cout << sourceID << myID << hop_msg <<  std::endl;
 
-                                        while (in_file_table >> dest >> next >> hop ){//verificar se a informacao do no ja esta na tabela
+                                        while (in_file_table >> dest >> next >> hop ){//verifica se a informacao do no ja esta na tabela
                                             
                                             //TODO verificar se o master possui menor hop
 
                                             if(sourceID == dest){//se o no se encontra na tabela
 
-                                                if(hop_msg < hop){//verifica se o hop ja e o menor
+                                                if(hop_msg < hop){//verifica se o hop ja' e' o menor
 
                                                     atualizar_tabela = true;
                                                     no_encontrado = true;
@@ -751,6 +751,7 @@ namespace gr {
                                             //usleep(100000);
                                             if(transmite){
                                                 message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<0:N:"+boost::to_string(idUsrp)+":"+str[pos+7]+":"+str[pos+9]+">"));//resposta para o no proximo do master
+                                                std::cout << "[SLAVE][MESSAGE PARSER]: ENCAMINHEI A MENSAGEM "<< str << std::endl;
                                             }
                                             
                                         //}
@@ -785,8 +786,7 @@ namespace gr {
                                                         file1 << id_neighbor<< std::endl;//coloca o vizinho na lista
                                                         file1.close();
                                                 }
-                                        } 
-                                        std::cout << "[SLAVE][MESSAGE PARSER]: ENCAMINHEI A MENSAGEM "<< str << std::endl;
+                                        }
                                         //exit(1); 
 
                                     }//end else
@@ -870,7 +870,7 @@ namespace gr {
 			} else {
 				
 				//str = NULL; std::free(str);
-				std::cout << "[SLAVE][MESSAGE PARSER]: Lixo" << std::endl;
+				std::cout << "[SLAVE][MESSAGE PARSER]: Ultimo else provavel Lixo" << std::endl;
 			}
 				
 			for (int i = 0; i < 50; i++) str[i] = 0;

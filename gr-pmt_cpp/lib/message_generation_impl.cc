@@ -111,7 +111,7 @@ namespace gr {
         if (file.is_open()){
             while(getline(file,line)){
                 if(cycle == 0){
-                    d_msg = pmt::intern("<"+line+":2:0.8:2.8>");//CRIA A MSG DE SENSE PARA CADA VIZINHO
+                    d_msg = pmt::intern("<"+line+":2:0.8:5.8>");//CRIA A MSG DE SENSE PARA CADA VIZINHO
                     std::cout << pmt::symbol_to_string(d_msg);
                     message_port_pub( pmt::mp("msg"), d_msg );
                     usleep(200000);
