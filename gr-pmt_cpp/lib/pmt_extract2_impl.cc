@@ -287,6 +287,23 @@ namespace gr {
 					
 				} else if (str[pos+3] =='2' && !sense){	// Comunicação para realizar sense
 					
+                                        //envia mensagem de sense para todos os vizinhos
+                                        std::string filename_table = "/tmp/routing_table.txt";
+                                        std::fstream in_file_table;
+                                        in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
+                                        int dest,next,hop;
+                                        
+                                        while (in_file_table >> dest >> next >> hop ){//envia msg de sense para os vizinhos
+                                            
+                                            message_port_pub(pmt::mp("info_neighbor"), pmt::intern("<"+boost::to_string(next)+":2:0.8:5.8>"));
+                                            usleep(200000);
+                                        
+                                        }
+                                        
+                                        in_file_table.close();
+                                        //fim comunicacao sense para vizinhos
+                                        
+
 					//<1:2:2:3,0>
 					sense = true;
 					share = false;
