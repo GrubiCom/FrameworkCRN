@@ -165,23 +165,41 @@ namespace gr {
                                         
                                         int sourceID = 0;
                                         int hop_msg = 1; 
+                                        int numiro;
+                                        
+                                        std::fstream file;
+                                        std::string line,line_p;
+                                        std::string potencia;
+                                        
+                                        numiro = (rand() % 30) - 130;
+                                        potencia = boost::to_string(numiro);
+                                        
+                                        if(boost::filesystem::exists("/tmp/power.txt")){
+                                            file.open("/tmp/power.txt",  std::ios::in);
+                                            while(getline(file,line)) line_p = line;
+                                            file.close();
+                                            int pos = line_p.find_last_of(":");
+                                            potencia = std::atof(line_p.substr(pos+1).c_str());
+                                            
+                                        }
+                                        
                                         
                                         if(!boost::filesystem::exists("/tmp/routing_table.txt")){
                                             out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
-                                            mensagem_para_tabela = "0 0 1";//Cria msg pra salvar na tabela
+                                            mensagem_para_tabela = "0 0 1 "+potencia;//Cria msg pra salvar na tabela
                                             out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
                                             out_file_table.close();
                                         }else {
                                         std::cout << "TABELA JA EXISTE" << std::endl;
                                         
                                         in_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
-                                        int dest,next,hop;
+                                        int dest,next,hop,pot;
                                         bool atualizar_tabela = false;
                                         bool no_encontrado = false;                          
 
                                         //std::cout << sourceID << myID << hop_msg <<  std::endl;
 
-                                        while (in_file_table >> dest >> next >> hop ){//verificar se a informacao do no ja esta na tabela
+                                        while (in_file_table >> dest >> next >> hop >> pot ){//verificar se a informacao do no ja esta na tabela
 
                                             if(sourceID == dest){//se o no se encontra na tabela
 
@@ -211,9 +229,9 @@ namespace gr {
                                             std::fstream temp_in_file_table;
 
 
-                                            while(in_file_table >> dest >> next >> hop){//copia as informacoes para a tabela temporaria
+                                            while(in_file_table >> dest >> next >> hop >>pot){//copia as informacoes para a tabela temporaria
 
-                                                mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//monta a mensagem
+                                                mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop)+separador+boost::to_string(pot);//monta a mensagem
 
                                                 temp_out_file_table << mensagem_para_tabela << std::endl;//salva linha na tabela
 
@@ -232,13 +250,13 @@ namespace gr {
 
                                                     if(hop_msg < hop){
 
-                                                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop_msg);//monta a mensagem com o menor hop
+                                                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop_msg)+separador+boost::to_string(pot);//monta a mensagem com o menor hop
 
                                                     } else {
-                                                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//monta a mensagem com o menor hop
+                                                        mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop)+separador+boost::to_string(pot);//monta a mensagem com o menor hop
                                                     }
                                                 } else {
-                                                    mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop);//copia a mensagem na integra
+                                                    mensagem_para_tabela = boost::to_string(dest)+separador+boost::to_string(next)+separador+boost::to_string(hop)+separador+boost::to_string(pot);//copia a mensagem na integra
                                                 }
 
                                                 out_file_table << mensagem_para_tabela << std::endl;//salva linha na tabela
@@ -255,7 +273,7 @@ namespace gr {
                                             //std::cout << "colocar na tabela" << std::endl;
                                             out_file_table.open(filename_table.c_str(), std::ios::out | std::ios::in | std::ios::app);
 
-                                            mensagem_para_tabela = "0 0 1";//Cria msg pra salvar na tabela
+                                            mensagem_para_tabela = "0 0 1 "+potencia;//Cria msg pra salvar na tabela
 
                                             out_file_table << mensagem_para_tabela << std::endl;//salva na tabela
                                         }
